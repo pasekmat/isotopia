@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://b8wtuu66rno12"]
+
+[ext_resource type="Script" uid="uid://mnv3kywd8ojo" path="res://scripts/model/resource_object.gd" id="1_ib5w3"]
+[ext_resource type="Texture2D" uid="uid://cjaoo6c1e6ll" path="res://assets/worldObjects/pebble.png" id="3_b3edp"]
+
+[node name="Pebble" type="Area2D" unique_id=568450932]
+script = ExtResource("1_ib5w3")
+resource_name = "Pebble"
+loot_item_id = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=987922679]
+texture_filter = 1
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_b3edp")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=2401342]
+polygon = PackedVector2Array(10, -12, -14, -8, -22, -2, -18, 10, 16, 8, 20, 3)

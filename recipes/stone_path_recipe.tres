@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="Recipe" format=3 uid="uid://d2uel5n86l1u2"]
+
+[ext_resource type="Script" uid="uid://bfkjs5eaivfkp" path="res://scripts/model/item_requirement.gd" id="1_ryps3"]
+[ext_resource type="Script" uid="uid://8bge2rs7i1q2" path="res://scripts/model/recipe.gd" id="2_41pqu"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_jbvlx"]
+specular_color = Color(0.79647416, 0.9095699, 0.8608027, 1)
+
+[sub_resource type="Resource" id="Resource_ewkmm"]
+script = ExtResource("1_ryps3")
+item = 1
+amount = 8
+metadata/_custom_type_script = "uid://bfkjs5eaivfkp"
+
+[sub_resource type="Resource" id="Resource_nrs4i"]
+script = ExtResource("1_ryps3")
+item = 2
+amount = 2
+metadata/_custom_type_script = "uid://bfkjs5eaivfkp"
+
+[resource]
+script = ExtResource("2_41pqu")
+id = "stone_path"
+display_name = "Stone Path"
+icon = SubResource("CanvasTexture_jbvlx")
+required_items = Array[ExtResource("1_ryps3")]([SubResource("Resource_ewkmm"), SubResource("Resource_nrs4i")])
+result_item_id = 4
+result_amount = 2
+category = 3
+xp_reward = 5
+unlocked_by_default = true
+metadata/_custom_type_script = "uid://8bge2rs7i1q2"

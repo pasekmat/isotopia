@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Recipe" format=3 uid="uid://drmemkp2p0vy4"]
+
+[ext_resource type="Texture2D" uid="uid://dgmx1fkyl6rwr" path="res://icon.svg" id="1_yfh65"]
+[ext_resource type="Script" uid="uid://bfkjs5eaivfkp" path="res://scripts/model/item_requirement.gd" id="2_137wo"]
+[ext_resource type="Script" uid="uid://8bge2rs7i1q2" path="res://scripts/model/recipe.gd" id="2_fpkhr"]
+
+[sub_resource type="Resource" id="Resource_137wo"]
+script = ExtResource("2_137wo")
+amount = 5
+metadata/_custom_type_script = "uid://bfkjs5eaivfkp"
+
+[resource]
+script = ExtResource("2_fpkhr")
+id = "longsword"
+display_name = "Longsword"
+icon = ExtResource("1_yfh65")
+required_items = Array[ExtResource("2_137wo")]([SubResource("Resource_137wo")])
+result_item_id = 3
+category = 2
+xp_reward = 5
+unlocked_by_default = true
+metadata/_custom_type_script = "uid://8bge2rs7i1q2"

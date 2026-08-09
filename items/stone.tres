@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://0k4bb6gfukcr"]
+
+[ext_resource type="Script" uid="uid://dtcutdlvlnu7j" path="res://scripts/model/item.gd" id="1_becff"]
+[ext_resource type="Texture2D" uid="uid://c7g057wisbj40" path="res://assets/items/stone.png" id="1_mwerj"]
+
+[resource]
+script = ExtResource("1_becff")
+id = 1
+display_name = "Stone"
+icon = ExtResource("1_mwerj")
+max_stack_size = 64

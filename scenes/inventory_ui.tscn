@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://e4mbaidljo73"]
+
+[ext_resource type="Script" uid="uid://c1btm55c8f8dp" path="res://scripts/ui/inventory_ui.gd" id="1_tahbm"]
+
+[node name="InventoryUI" type="Control" unique_id=77333087]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_tahbm")
+columns = 8
+slot_size = Vector2(32, 32)
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1864745111]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer" unique_id=965852828]
+layout_mode = 2

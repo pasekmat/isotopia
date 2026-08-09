@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="LootTable" format=3 uid="uid://c6dkwi6tt213q"]
+
+[ext_resource type="Script" uid="uid://tfxypbh6p5hi" path="res://scripts/model/loot_table_entry.gd" id="1_4xbba"]
+[ext_resource type="Script" uid="uid://duuhtyu8thok6" path="res://scripts/model/loot_table.gd" id="2_rlyqs"]
+
+[sub_resource type="Resource" id="Resource_0r07c"]
+script = ExtResource("1_4xbba")
+item = 3
+metadata/_custom_type_script = "uid://tfxypbh6p5hi"
+
+[sub_resource type="Resource" id="Resource_j1cgb"]
+script = ExtResource("1_4xbba")
+item = 1
+max_amount = 4
+metadata/_custom_type_script = "uid://tfxypbh6p5hi"
+
+[resource]
+script = ExtResource("2_rlyqs")
+entries = Array[ExtResource("1_4xbba")]([SubResource("Resource_0r07c"), SubResource("Resource_j1cgb")])
+metadata/_custom_type_script = "uid://duuhtyu8thok6"

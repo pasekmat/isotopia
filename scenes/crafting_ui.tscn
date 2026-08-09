@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://6u5tind1udpy"]
+
+[ext_resource type="Script" uid="uid://djrid20cgt1jw" path="res://scripts/ui/crafting_ui.gd" id="1_nnymq"]
+
+[node name="CraftingUI" type="Control" unique_id=1840096813]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_nnymq")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1572948301]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer" unique_id=961573227]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/ScrollContainer" unique_id=303776446]
+layout_mode = 2
