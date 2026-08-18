@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Blueprint" format=3 uid="uid://dcnegpfb6jage"]
+
+[ext_resource type="Script" uid="uid://lwvb5n4jmktl" path="res://scripts/model/blueprint.gd" id="1_sdtcs"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_dqvxm"]
+specular_color = Color(0, 0.5359024, 0.9945515, 1)
+
+[resource]
+script = ExtResource("1_sdtcs")
+id = 1
+display_name = "Longsword BP"
+icon = SubResource("CanvasTexture_dqvxm")
+unlocks_recipe_ids = Array[int]([1])
+metadata/_custom_type_script = "uid://lwvb5n4jmktl"

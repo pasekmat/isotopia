@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://cjm55xhrqt4vx"]
+
+[ext_resource type="Script" uid="uid://dtcutdlvlnu7j" path="res://scripts/model/item.gd" id="1_xly5t"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_m3men"]
+specular_color = Color(0.029699972, 0.20575479, 0.99, 1)
+
+[resource]
+script = ExtResource("1_xly5t")
+id = 15
+display_name = "Longsword Blueprint"
+icon = SubResource("CanvasTexture_m3men")
+max_stack_size = 1
+grants_blueprint_id = 1
+metadata/_custom_type_script = "uid://lwvb5n4jmktl"

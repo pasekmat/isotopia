@@ -33,16 +33,17 @@
 [ext_resource type="Texture2D" uid="uid://dac261p5jxc48" path="res://assets/player/isometric_Mini-Crusader/walk/crusader_walk_00012.png" id="32_dj3rm"]
 [ext_resource type="Texture2D" uid="uid://ctx7jwbx3ls2y" path="res://assets/player/isometric_Mini-Crusader/walk/crusader_walk_00013.png" id="33_iajyf"]
 [ext_resource type="Texture2D" uid="uid://drgybmjhi0xop" path="res://assets/player/isometric_Mini-Crusader/walk/crusader_walk_00014.png" id="34_h3hrn"]
-[ext_resource type="Script" uid="uid://d3vtlkc2xai42" path="res://scripts/chunked_world_generator.gd" id="35_af4el"]
+[ext_resource type="Script" uid="uid://d3vtlkc2xai42" path="res://scripts/world/chunked_world_generator.gd" id="35_af4el"]
 [ext_resource type="PackedScene" uid="uid://o5pju108njyk" path="res://scenes/worldObjects/treestump.tscn" id="36_gmqbl"]
 [ext_resource type="PackedScene" uid="uid://ciirdqfr1yet4" path="res://scenes/worldObjects/tree.tscn" id="36_qkxkb"]
 [ext_resource type="PackedScene" uid="uid://b8wtuu66rno12" path="res://scenes/worldObjects/pebble.tscn" id="37_4bto7"]
 [ext_resource type="PackedScene" uid="uid://jfdhl4y3vqsu" path="res://scenes/worldObjects/grass.tscn" id="38_r6ssr"]
 [ext_resource type="PackedScene" uid="uid://cgtfb2ly8ayaa" path="res://scenes/worldObjects/bush.tscn" id="39_6ocxv"]
 [ext_resource type="PackedScene" uid="uid://t4aiptswpfpn" path="res://scenes/worldObjects/chest.tscn" id="40_l2ef6"]
-[ext_resource type="Script" uid="uid://2dw05wpbnrhw" path="res://scripts/tile_highlighter.gd" id="40_r6ssr"]
-[ext_resource type="Script" uid="uid://cr5wf7o1cri08" path="res://scripts/debug_coords_label.gd" id="41_6ocxv"]
-[ext_resource type="Script" uid="uid://c6js1w63gjyw6" path="res://scripts/day_night_cycle.gd" id="42_6r0o2"]
+[ext_resource type="Script" uid="uid://2dw05wpbnrhw" path="res://scripts/world/tile_highlighter.gd" id="40_r6ssr"]
+[ext_resource type="Script" uid="uid://cr5wf7o1cri08" path="res://scripts/world/debug_coords_label.gd" id="41_6ocxv"]
+[ext_resource type="Script" uid="uid://c6js1w63gjyw6" path="res://scripts/world/day_night_cycle.gd" id="42_6r0o2"]
+[ext_resource type="PackedScene" uid="uid://dw4kl3afysyfy" path="res://scenes/HotbarUI.tscn" id="42_hiivq"]
 [ext_resource type="PackedScene" uid="uid://6u5tind1udpy" path="res://scenes/crafting_ui.tscn" id="42_rntdg"]
 [ext_resource type="PackedScene" uid="uid://e4mbaidljo73" path="res://scenes/inventory_ui.tscn" id="42_sfkyn"]
 
@@ -496,7 +497,7 @@ animation = &"idle"
 frame_progress = 0.9342317
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1401097342]
-zoom = Vector2(0.2, 0.2)
+zoom = Vector2(0.7, 0.7)
 
 [node name="ChunkedWorld" type="Node2D" parent="." unique_id=1732628033 node_paths=PackedStringArray("tile_map_layer", "player", "objects_container")]
 script = ExtResource("35_af4el")
@@ -511,7 +512,6 @@ bush_scene = ExtResource("39_6ocxv")
 objects_container = NodePath("../WorldObjects")
 
 [node name="Chest" parent="." unique_id=1716427385 instance=ExtResource("40_l2ef6")]
-position = Vector2(524, -21)
 cell = Vector2i(10, 10)
 
 [node name="WorldObjects" type="Node2D" parent="." unique_id=412155629]
@@ -521,6 +521,8 @@ script = ExtResource("40_r6ssr")
 tile_map_layer = NodePath("../TileMapLayer")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1040588163]
+
+[node name="HotbarUI" parent="CanvasLayer" unique_id=435608964 instance=ExtResource("42_hiivq")]
 
 [node name="InventoryUI" parent="CanvasLayer" unique_id=77333087 instance=ExtResource("42_sfkyn")]
 

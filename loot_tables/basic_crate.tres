@@ -5,16 +5,23 @@
 
 [sub_resource type="Resource" id="Resource_0r07c"]
 script = ExtResource("1_4xbba")
-item = 3
+item = 13
+drop_chance = 0.1
 metadata/_custom_type_script = "uid://tfxypbh6p5hi"
 
 [sub_resource type="Resource" id="Resource_j1cgb"]
 script = ExtResource("1_4xbba")
 item = 1
-max_amount = 4
+max_amount = 8
+metadata/_custom_type_script = "uid://tfxypbh6p5hi"
+
+[sub_resource type="Resource" id="Resource_6ir3j"]
+script = ExtResource("1_4xbba")
+item = 15
+drop_chance = 0.5
 metadata/_custom_type_script = "uid://tfxypbh6p5hi"
 
 [resource]
 script = ExtResource("2_rlyqs")
-entries = Array[ExtResource("1_4xbba")]([SubResource("Resource_0r07c"), SubResource("Resource_j1cgb")])
+entries = Array[ExtResource("1_4xbba")]([SubResource("Resource_0r07c"), SubResource("Resource_j1cgb"), SubResource("Resource_6ir3j")])
 metadata/_custom_type_script = "uid://duuhtyu8thok6"

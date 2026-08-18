@@ -20,7 +20,7 @@ func add_item(item_id: GameEnums.ItemType, amount: int) -> int:
 
 	# Ak je toto "blueprint scroll" item, rovno odomkni recept a neuklad
 	# ho do bežných slotov - je to jednorazová vec.
-	if item != null and item.grants_blueprint_id != "":
+	if item != null and item.grants_blueprint_id != GameEnums.BlueprintType.NONE:
 		CraftingManager.discover_blueprint(item.grants_blueprint_id)
 		return 0
 

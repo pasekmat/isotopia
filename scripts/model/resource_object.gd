@@ -9,7 +9,7 @@ class_name ResourceObject
 
 ## Aký item a koľko kusov dá jedno "zaklopanie". Enum namiesto reťazca -
 ## dropdown v Inspectore, žiadne preklepy.
-@export var loot_item_id: GameEnums.ItemType = GameEnums.ItemType.FIBER
+@export var loot_item_id: GameEnums.ItemType = GameEnums.ItemType.GRASS
 @export var loot_amount: int = 1
 
 var hits_remaining: int

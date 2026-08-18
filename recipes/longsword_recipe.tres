@@ -11,12 +11,11 @@ metadata/_custom_type_script = "uid://bfkjs5eaivfkp"
 
 [resource]
 script = ExtResource("2_fpkhr")
-id = "longsword"
+id = 1
 display_name = "Longsword"
 icon = ExtResource("1_yfh65")
 required_items = Array[ExtResource("2_137wo")]([SubResource("Resource_137wo")])
-result_item_id = 3
+result_item_id = 13
 category = 2
 xp_reward = 5
-unlocked_by_default = true
 metadata/_custom_type_script = "uid://8bge2rs7i1q2"

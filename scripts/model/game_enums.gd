@@ -1,17 +1,30 @@
 class_name GameEnums
 extends RefCounted
 
-## Centrálne enumy pre celý projekt - pridávaj sem nové hodnoty podľa
-## potreby. Vďaka class_name sú dostupné odkiaľkoľvek ako
-## GameEnums.ItemType.WOOD, GameEnums.CraftingCategory.EQUIPMENT, atď.,
-## bez nutnosti čokoľvek importovať.
-
 enum ItemType {
 	WOOD,
 	STONE,
-	FIBER,
+	GRASS,
+
+	HAY,
+	RAW_IRON,
+	RAW_GOLD,
+	RAW_COPPER,
+	RAW_SILVER,
+
+	IRON,
+	GOLD,
+	SILVER,
+	COPPER,
+	BRONZE,
+
 	LONGSWORD,
-	STONE_PATH
+	STONE_PATH,
+
+	## Toto je FYZICKÝ predmet (schéma/zvitok), ktorý sa dá lootnúť a nosiť
+	## v inventári - nie samotný blueprint. Loot tabuľky ho používajú
+	## rovnako ako akýkoľvek iný item.
+	LONGSWORD_BP,
 }
 
 enum CraftingCategory {
@@ -21,12 +34,25 @@ enum CraftingCategory {
 	BUILDING,
 }
 
-## Crafting stanice - NONE znamená "dá sa craftovať voľne rukou, bez
-## potreby postavenej stanice". Pridávaj ďalšie podľa toho, aké stanice
-## postupne pridáš do hry.
 enum WorkstationType {
 	NONE,
 	FURNACE,
 	FORGE,
 	LEATHERWORKING,
+}
+
+enum RecipeType {
+	STONE_PATH,
+	LONGSWORD,
+}
+
+## Samostatný enum pre samotné blueprinty (odomykacie "kľúče"), oddelený od
+## ItemType - fyzický predmet (napr. LONGSWORD_BP vyššie) len ODKAZUJE na
+## hodnotu z tohto enumu cez Item.grants_blueprint_id.
+##
+## NONE je dôležitý sentinel - keďže enum nemôže byť null, NONE reprezentuje
+## "žiadny blueprint" všade tam, kde by si predtým použil null/"".
+enum BlueprintType {
+	NONE,
+	LONGSWORD,
 }

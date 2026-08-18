@@ -1,7 +1,7 @@
 class_name Recipe
 extends Resource
 
-@export var id: String = ""
+@export var id: GameEnums.RecipeType = GameEnums.RecipeType.STONE_PATH
 @export var display_name: String = ""
 @export var icon: Texture2D
 

@@ -11,8 +11,8 @@ extends Resource
 @export var max_stack_size: int = 99
 @export_multiline var description: String = ""
 
-## Ak je toto nastavené (na id existujúceho Blueprint resource), tento item
-## reprezentuje fyzicky nájdenú "schému/recept" - pri zobratí do inventára
-## sa rovno odomkne príslušný blueprint a item sa NEULOŽÍ do inventára.
-## Blueprint id ostáva String (rastúci katalóg obsahu, nie pevná sada).
-@export var grants_blueprint_id: String = ""
+## Ak je toto nastavené (na iné ako NONE), tento item reprezentuje fyzicky
+## nájdenú "schému/recept" - pri zobratí do inventára sa rovno odomkne
+## príslušný blueprint (CraftingManager.discover_blueprint) a item sa
+## NEULOŽÍ do inventára ako bežný predmet (je to jednorazová vec).
+@export var grants_blueprint_id: GameEnums.BlueprintType = GameEnums.BlueprintType.NONE

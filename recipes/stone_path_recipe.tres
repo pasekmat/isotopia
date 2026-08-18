@@ -20,11 +20,10 @@ metadata/_custom_type_script = "uid://bfkjs5eaivfkp"
 
 [resource]
 script = ExtResource("2_41pqu")
-id = "stone_path"
 display_name = "Stone Path"
 icon = SubResource("CanvasTexture_jbvlx")
 required_items = Array[ExtResource("1_ryps3")]([SubResource("Resource_ewkmm"), SubResource("Resource_nrs4i")])
-result_item_id = 4
+result_item_id = 14
 result_amount = 2
 category = 3
 xp_reward = 5

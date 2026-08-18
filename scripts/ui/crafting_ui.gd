@@ -101,7 +101,7 @@ func _build_requirement_icons(recipe: Recipe, container: HBoxContainer) -> void:
 		container.add_child(req_box)
 
 
-func _on_craft_pressed(recipe_id: String) -> void:
+func _on_craft_pressed(recipe_id: GameEnums.RecipeType) -> void:
 	CraftingManager.craft(recipe_id)
 
 

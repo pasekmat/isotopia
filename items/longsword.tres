@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_ghgdk")
-id = 3
+id = 13
 display_name = "Longsword"
 icon = ExtResource("1_jsohj")
 max_stack_size = 1

@@ -7,7 +7,7 @@ specular_color = Color(0.6664514, 0.93503994, 0.96385247, 1)
 
 [resource]
 script = ExtResource("1_tcrwo")
-id = 4
+id = 14
 display_name = "Stone Path"
 icon = SubResource("CanvasTexture_kc3m6")
 max_stack_size = 64

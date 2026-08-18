@@ -1,11 +1,7 @@
 extends Node
 
-## Vyemituje sa, keď hráč fyzicky objaví Blueprint vo svete.
 signal blueprint_discovered(blueprint: Blueprint)
-
-## Vyemituje sa, keď sa recept stane reálne craftovateľným.
 signal recipe_unlocked(recipe: Recipe)
-
 signal crafted(recipe: Recipe)
 signal category_xp_changed(category: GameEnums.CraftingCategory, current_xp: int, current_level: int)
 
@@ -13,15 +9,15 @@ signal category_xp_changed(category: GameEnums.CraftingCategory, current_xp: int
 @export var blueprints_folder: String = "res://blueprints/"
 @export var xp_per_level: int = 100
 
-var _recipes_by_id: Dictionary = {}     # id (String) -> Recipe
-var _blueprints_by_id: Dictionary = {}  # id (String) -> Blueprint
+var _recipes_by_id: Dictionary = {}     # GameEnums.RecipeType -> Recipe
+var _blueprints_by_id: Dictionary = {}  # GameEnums.BlueprintType -> Blueprint
 
-var _unlocked_recipe_ids: Dictionary = {}      # recipe id -> true
-var _discovered_blueprint_ids: Dictionary = {} # blueprint id -> true
+var _unlocked_recipe_ids: Dictionary = {}      # GameEnums.RecipeType -> true
+var _discovered_blueprint_ids: Dictionary = {} # GameEnums.BlueprintType -> true
 
-## Reverzná mapa postavená z Blueprint.unlocks_recipe_ids: recipe id ->
-## blueprint id, ktorý ho musí najprv odomknúť. Recepty, ktoré tu nie sú,
-## nepotrebujú žiadny blueprint - riadia sa len levelom/unlocked_by_default.
+## Reverzná mapa: GameEnums.RecipeType -> GameEnums.BlueprintType, ktorý ho
+## musí najprv odomknúť. Recepty, ktoré tu nie sú, nepotrebujú žiadny
+## blueprint - riadia sa len levelom/unlocked_by_default.
 var _recipe_required_blueprint: Dictionary = {}
 
 var category_xp: Dictionary = {}    # GameEnums.CraftingCategory -> int
@@ -48,7 +44,7 @@ func _load_all_recipes() -> void:
 	while file_name != "":
 		if file_name.ends_with(".tres"):
 			var recipe: Recipe = load(recipes_folder.path_join(file_name))
-			if recipe != null and recipe.id != "":
+			if recipe != null:
 				_recipes_by_id[recipe.id] = recipe
 		file_name = dir.get_next()
 	dir.list_dir_end()
@@ -67,7 +63,7 @@ func _load_all_blueprints() -> void:
 	while file_name != "":
 		if file_name.ends_with(".tres"):
 			var bp: Blueprint = load(blueprints_folder.path_join(file_name))
-			if bp != null and bp.id != "":
+			if bp != null and bp.id != GameEnums.BlueprintType.NONE:
 				_blueprints_by_id[bp.id] = bp
 		file_name = dir.get_next()
 	dir.list_dir_end()
@@ -82,7 +78,7 @@ func _build_reverse_map() -> void:
 			_recipe_required_blueprint[recipe_id] = bp_id
 
 
-func get_recipe(recipe_id: String) -> Recipe:
+func get_recipe(recipe_id: GameEnums.RecipeType) -> Recipe:
 	return _recipes_by_id.get(recipe_id, null)
 
 
@@ -90,15 +86,15 @@ func get_all_recipes() -> Array:
 	return _recipes_by_id.values()
 
 
-func get_blueprint(blueprint_id: String) -> Blueprint:
+func get_blueprint(blueprint_id: GameEnums.BlueprintType) -> Blueprint:
 	return _blueprints_by_id.get(blueprint_id, null)
 
 
-func is_unlocked(recipe_id: String) -> bool:
+func is_unlocked(recipe_id: GameEnums.RecipeType) -> bool:
 	return _unlocked_recipe_ids.has(recipe_id)
 
 
-func is_discovered(blueprint_id: String) -> bool:
+func is_discovered(blueprint_id: GameEnums.BlueprintType) -> bool:
 	return _discovered_blueprint_ids.has(blueprint_id)
 
 
@@ -111,8 +107,11 @@ func get_category_xp(category: GameEnums.CraftingCategory) -> int:
 
 
 ## Zavolaj toto vtedy, keď hráč zoberie/prečíta fyzický blueprint item vo
-## svete (napr. z lootboxu alebo drop-u z moba) - pozri Item.grants_blueprint_id.
-func discover_blueprint(blueprint_id: String) -> void:
+## svete - pozri Item.grants_blueprint_id.
+func discover_blueprint(blueprint_id: GameEnums.BlueprintType) -> void:
+	if blueprint_id == GameEnums.BlueprintType.NONE:
+		return
+
 	if _discovered_blueprint_ids.has(blueprint_id):
 		return
 
@@ -130,7 +129,7 @@ func discover_blueprint(blueprint_id: String) -> void:
 			_check_unlock(recipe)
 
 
-func can_craft(recipe_id: String) -> bool:
+func can_craft(recipe_id: GameEnums.RecipeType) -> bool:
 	var recipe: Recipe = get_recipe(recipe_id)
 	if recipe == null or not is_unlocked(recipe_id):
 		return false
@@ -142,7 +141,7 @@ func can_craft(recipe_id: String) -> bool:
 	return true
 
 
-func craft(recipe_id: String) -> bool:
+func craft(recipe_id: GameEnums.RecipeType) -> bool:
 	if not can_craft(recipe_id):
 		return false
 
@@ -187,8 +186,10 @@ func _check_unlock(recipe: Recipe) -> void:
 	if _unlocked_recipe_ids.has(recipe.id):
 		return
 
-	var required_blueprint_id: String = _recipe_required_blueprint.get(recipe.id, "")
-	if required_blueprint_id != "" and not _discovered_blueprint_ids.has(required_blueprint_id):
+	# NOVÉ: default je GameEnums.BlueprintType.NONE namiesto null - enum
+	# nemôže byť null, takže NONE slúži ako "žiadny blueprint nevyžadovaný".
+	var required_blueprint_id: GameEnums.BlueprintType = _recipe_required_blueprint.get(recipe.id, GameEnums.BlueprintType.NONE)
+	if required_blueprint_id != GameEnums.BlueprintType.NONE and not _discovered_blueprint_ids.has(required_blueprint_id):
 		return  # tento recept vyžaduje blueprint, ktorý ešte nebol objavený
 
 	var level: int = get_category_level(recipe.category)

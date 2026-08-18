@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://diwgv1kytwdxo"]
+
+[ext_resource type="Script" uid="uid://dhvothy5x84gp" path="res://scripts/ui/item_slot_ui.gd" id="1_ewg08"]
+
+[node name="ItemSlot" type="Panel" unique_id=1702030988]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_ewg08")
+
+[node name="Icon" type="TextureRect" parent="." unique_id=785542434]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+expand_mode = 1
+stretch_mode = 5
+
+[node name="AmountLabel" type="Label" parent="." unique_id=1965376128]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
