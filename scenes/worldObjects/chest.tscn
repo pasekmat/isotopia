@@ -9,9 +9,10 @@
 size = Vector2(44.75, 40.25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mdbyr"]
-size = Vector2(43, 20)
+size = Vector2(43, 24)
 
 [node name="Chest" type="Area2D" unique_id=1716427385]
+position = Vector2(0, 20)
 script = ExtResource("1_dded5")
 loot_table = ExtResource("2_62e23")
 opened_texture = ExtResource("3_62e23")
@@ -36,5 +37,5 @@ shape = SubResource("RectangleShape2D_ak6fr")
 position = Vector2(1, -2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicalBlocker" unique_id=2146085681]
-position = Vector2(-0.5, -23)
+position = Vector2(-0.5, -17)
 shape = SubResource("RectangleShape2D_mdbyr")

@@ -38,9 +38,8 @@ func _ready() -> void:
 	input_pickable = true
 	mouse_entered.connect(_on_mouse_entered)
 	mouse_exited.connect(_on_mouse_exited)
-	# NOVÉ: input_event.connect() zámerne odstránené - "interact" je klávesová
-	# akcia (E), input_event vidí len myšové/touch udalosti, takže by sa
-	# nikdy nespustila. Klávesu chytáme namiesto toho v _unhandled_input().
+	
+	z_index = 10
 
 
 func _on_mouse_entered() -> void:

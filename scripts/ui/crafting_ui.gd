@@ -57,7 +57,6 @@ func _add_row(recipe: Recipe) -> void:
 	name_label.custom_minimum_size = Vector2(110, 0)
 	row.add_child(name_label)
 
-	# NOVÉ: kontajner na malé dvojice ikonka+počet, jedna pre každú surovinu.
 	var requirements_box := HBoxContainer.new()
 	requirements_box.name = "RequirementsBox"
 	requirements_box.custom_minimum_size = Vector2(200, 0)

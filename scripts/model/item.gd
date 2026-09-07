@@ -1,9 +1,7 @@
 class_name Item
 extends Resource
 
-## Unikátne ID predmetu - teraz enum namiesto reťazca, takže si vyberáš
-## z dropdownu v Inspectore namiesto písania textu (žiadne preklepy).
-## Nové typy predmetov pridávaš do GameEnums.ItemType.
+## Unikátne ID predmetu.
 @export var id: GameEnums.ItemType = GameEnums.ItemType.WOOD
 
 @export var display_name: String = ""
@@ -16,3 +14,19 @@ extends Resource
 ## príslušný blueprint (CraftingManager.discover_blueprint) a item sa
 ## NEULOŽÍ do inventára ako bežný predmet (je to jednorazová vec).
 @export var grants_blueprint_id: GameEnums.BlueprintType = GameEnums.BlueprintType.NONE
+
+## Ak je toto nastavené (na iné ako NONE), tento item sa dá nasadiť ako
+## gear do príslušného equipment slotu.
+@export var equipment_slot: GameEnums.EquipmentSlot = GameEnums.EquipmentSlot.NONE
+
+## Ak je toto vyplnené, tento item sa dá "postaviť" do sveta (cez
+## PlacementManager) - priraď scénu s vizuálom + prípadnou kolíziou
+## postavenej štruktúry.
+@export var placeable_scene: PackedScene
+
+@export_group("Stat Bonuses")
+@export var health_bonus: int = 0
+@export var armor_bonus: int = 0
+@export var intelligence_bonus: int = 0
+@export var strength_bonus: int = 0
+@export var attack_speed_bonus: int = 0

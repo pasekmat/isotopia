@@ -53,6 +53,7 @@ func _ready() -> void:
 	if saved_state.get("type", "") == "damaged":
 		hits_remaining = saved_state.get("hits_remaining", hits_required)
 
+	z_index = 10  # vyššie než ktorákoľvek z 5 terénnych vrstiev (0-4)
 	add_to_group("interactable")
 	_apply_random_variant()
 
@@ -64,7 +65,8 @@ func _ready() -> void:
 	mouse_entered.connect(_on_mouse_entered)
 	mouse_exited.connect(_on_mouse_exited)
 	input_event.connect(_on_input_event)
-
+	
+	queue_redraw()
 
 func _on_mouse_entered() -> void:
 	sprite.modulate = highlight_modulate
@@ -134,3 +136,6 @@ func interact() -> void:
 		queue_free()
 	else:
 		WorldModifications.set_cell_state(cell, {"type": "damaged", "hits_remaining": hits_remaining})
+
+func _draw() -> void:
+	draw_circle(Vector2.ZERO, 20, Color.RED)

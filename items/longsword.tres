@@ -9,4 +9,7 @@ id = 13
 display_name = "Longsword"
 icon = ExtResource("1_jsohj")
 max_stack_size = 1
+equipment_slot = 7
+strength_bonus = 5
+attack_speed_bonus = 2
 metadata/_custom_type_script = "uid://dtcutdlvlnu7j"

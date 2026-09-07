@@ -19,9 +19,10 @@ func _ready() -> void:
 
 	_build_slots()
 
-	# NOVÉ: rovnaký signál ako InventoryUI, keďže ide o tie isté dáta.
 	Inventory.inventory_changed.connect(_refresh)
+	Inventory.selected_slot_changed.connect(_on_selected_slot_changed)  # NOVÉ
 	_refresh()
+	_on_selected_slot_changed(Inventory.selected_slot_index)  # NOVÉ: zvýrazni default slot hneď na štarte
 
 	await get_tree().process_frame
 	var viewport_size: Vector2 = get_viewport_rect().size
@@ -31,10 +32,23 @@ func _ready() -> void:
 	)
 
 
+# NOVÉ: klávesy 1-8 vyberú príslušný hotbar slot (rovnaké indexy 0-7).
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed and not event.echo:
+		var number: int = event.keycode - KEY_1  # KEY_1..KEY_8 -> 0..7
+		if number >= 0 and number < hotbar_slot_count:
+			Inventory.select_slot(number)
+
+
+func _on_selected_slot_changed(index: int) -> void:
+	for i in _slot_nodes.size():
+		_slot_nodes[i].set_selected(i == index)
+
+
 func _build_slots() -> void:
 	for i in hotbar_slot_count:
 		var slot: ItemSlotUI = item_slot_scene.instantiate()
-		slot.slot_index = i  
+		slot.slot_index = i  # NOVÉ: rovnaké indexy ako prvé sloty v InventoryUI
 		slot.custom_minimum_size = slot_size
 		row.add_child(slot)
 		_slot_nodes.append(slot)

@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dhrp0cairx3re" path="res://assets/worldObjects/bush.png" id="3_74dkx"]
 
 [node name="Bush" type="Area2D" unique_id=1099216966]
+scale = Vector2(0.8, 0.8)
 script = ExtResource("1_0xm4r")
 resource_name = "Bush"
 hits_required = 2

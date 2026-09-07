@@ -1,44 +1,7 @@
 [gd_scene format=3 uid="uid://bck4a0xemc1rj"]
 
-[ext_resource type="Texture2D" uid="uid://bck2jmw4y4kmb" path="res://assets/tiles/allTiles_sheetAsprite.png" id="2_4urfc"]
-[ext_resource type="Texture2D" uid="uid://b2jdnv3pluhmm" path="res://assets/tiles/Spring Crops.png" id="3_qkxkb"]
-[ext_resource type="Script" uid="uid://6gnfeorbqew5" path="res://scripts/player.gd" id="4_k8pa6"]
-[ext_resource type="Texture2D" uid="uid://ddhd3u4ygws3v" path="res://assets/player/isometric_Mini-Crusader/idle/crusader_idle_00000.png" id="5_4bto7"]
-[ext_resource type="Texture2D" uid="uid://dey2cjsnr65c2" path="res://assets/player/isometric_Mini-Crusader/idle/crusader_idle_00001.png" id="6_r6ssr"]
-[ext_resource type="Texture2D" uid="uid://bjxu2ggkkes4j" path="res://assets/player/isometric_Mini-Crusader/idle/crusader_idle_00002.png" id="7_6ocxv"]
-[ext_resource type="Texture2D" uid="uid://bdowdwobkmpl5" path="res://assets/player/isometric_Mini-Crusader/idle/crusader_idle_00003.png" id="8_6r0o2"]
-[ext_resource type="Texture2D" uid="uid://dicp7ikki3vc4" path="res://assets/player/isometric_Mini-Crusader/idle/crusader_idle_00004.png" id="9_4urfc"]
-[ext_resource type="Texture2D" uid="uid://ba80mi6watrji" path="res://assets/player/isometric_Mini-Crusader/idle/crusader_idle_00005.png" id="10_sfkyn"]
-[ext_resource type="Texture2D" uid="uid://c00m52novar4g" path="res://assets/player/isometric_Mini-Crusader/idle/crusader_idle_00006.png" id="11_rntdg"]
-[ext_resource type="Texture2D" uid="uid://bmk14ua04472i" path="res://assets/player/isometric_Mini-Crusader/idle/crusader_idle_00007.png" id="12_hiivq"]
-[ext_resource type="Texture2D" uid="uid://cq58thothjb61" path="res://assets/player/isometric_Mini-Crusader/idle/crusader_idle_00008.png" id="13_l2ef6"]
-[ext_resource type="Texture2D" uid="uid://wmlg6537rppm" path="res://assets/player/isometric_Mini-Crusader/idle/crusader_idle_00009.png" id="14_w8l5x"]
-[ext_resource type="Texture2D" uid="uid://cka2jsgjl1elb" path="res://assets/player/isometric_Mini-Crusader/idle/crusader_idle_00010.png" id="15_1wuir"]
-[ext_resource type="Texture2D" uid="uid://cp4ufe6vb7mbj" path="res://assets/player/isometric_Mini-Crusader/idle/crusader_idle_00011.png" id="16_o4urf"]
-[ext_resource type="Texture2D" uid="uid://dvq1ok155qhra" path="res://assets/player/isometric_Mini-Crusader/idle/crusader_idle_00012.png" id="17_uo1ep"]
-[ext_resource type="Texture2D" uid="uid://cfy2v45687y6q" path="res://assets/player/isometric_Mini-Crusader/idle/crusader_idle_00013.png" id="18_xksap"]
-[ext_resource type="Texture2D" uid="uid://0d76mfv6vnu2" path="res://assets/player/isometric_Mini-Crusader/idle/crusader_idle_00014.png" id="19_ak85g"]
-[ext_resource type="Texture2D" uid="uid://co65syhl5j8bj" path="res://assets/player/isometric_Mini-Crusader/walk/crusader_walk_00000.png" id="20_x4k2d"]
-[ext_resource type="Texture2D" uid="uid://yxa2n2rcofbb" path="res://assets/player/isometric_Mini-Crusader/walk/crusader_walk_00001.png" id="21_jws35"]
-[ext_resource type="Texture2D" uid="uid://4hfuv7tllekr" path="res://assets/player/isometric_Mini-Crusader/walk/crusader_walk_00002.png" id="22_haaho"]
-[ext_resource type="Texture2D" uid="uid://tt16crnyegvw" path="res://assets/player/isometric_Mini-Crusader/walk/crusader_walk_00003.png" id="23_lnvns"]
-[ext_resource type="Texture2D" uid="uid://cmbvtc5l4fxr3" path="res://assets/player/isometric_Mini-Crusader/walk/crusader_walk_00004.png" id="24_sr1wi"]
-[ext_resource type="Texture2D" uid="uid://61is8wap6r5f" path="res://assets/player/isometric_Mini-Crusader/walk/crusader_walk_00005.png" id="25_wx07a"]
-[ext_resource type="Texture2D" uid="uid://dlk6fq4gtmkg1" path="res://assets/player/isometric_Mini-Crusader/walk/crusader_walk_00006.png" id="26_rnubh"]
-[ext_resource type="Texture2D" uid="uid://cs8svenn6wase" path="res://assets/player/isometric_Mini-Crusader/walk/crusader_walk_00007.png" id="27_5leur"]
-[ext_resource type="Texture2D" uid="uid://bijwr4wxkuah6" path="res://assets/player/isometric_Mini-Crusader/walk/crusader_walk_00008.png" id="28_p421j"]
-[ext_resource type="Texture2D" uid="uid://fowk2tan12yj" path="res://assets/player/isometric_Mini-Crusader/walk/crusader_walk_00009.png" id="29_p6t5t"]
-[ext_resource type="Texture2D" uid="uid://b4oxd2tpsiuw" path="res://assets/player/isometric_Mini-Crusader/walk/crusader_walk_00010.png" id="30_byhed"]
-[ext_resource type="Texture2D" uid="uid://6h7jojncj86r" path="res://assets/player/isometric_Mini-Crusader/walk/crusader_walk_00011.png" id="31_l28v8"]
-[ext_resource type="Texture2D" uid="uid://dac261p5jxc48" path="res://assets/player/isometric_Mini-Crusader/walk/crusader_walk_00012.png" id="32_dj3rm"]
-[ext_resource type="Texture2D" uid="uid://ctx7jwbx3ls2y" path="res://assets/player/isometric_Mini-Crusader/walk/crusader_walk_00013.png" id="33_iajyf"]
-[ext_resource type="Texture2D" uid="uid://drgybmjhi0xop" path="res://assets/player/isometric_Mini-Crusader/walk/crusader_walk_00014.png" id="34_h3hrn"]
-[ext_resource type="Script" uid="uid://d3vtlkc2xai42" path="res://scripts/world/chunked_world_generator.gd" id="35_af4el"]
-[ext_resource type="PackedScene" uid="uid://o5pju108njyk" path="res://scenes/worldObjects/treestump.tscn" id="36_gmqbl"]
-[ext_resource type="PackedScene" uid="uid://ciirdqfr1yet4" path="res://scenes/worldObjects/tree.tscn" id="36_qkxkb"]
-[ext_resource type="PackedScene" uid="uid://b8wtuu66rno12" path="res://scenes/worldObjects/pebble.tscn" id="37_4bto7"]
-[ext_resource type="PackedScene" uid="uid://jfdhl4y3vqsu" path="res://scenes/worldObjects/grass.tscn" id="38_r6ssr"]
-[ext_resource type="PackedScene" uid="uid://cgtfb2ly8ayaa" path="res://scenes/worldObjects/bush.tscn" id="39_6ocxv"]
+[ext_resource type="PackedScene" uid="uid://crtobfevjx7im" path="res://scenes/world_generator.tscn" id="1_f6ptj"]
+[ext_resource type="PackedScene" uid="uid://mvw3tl4y2cfx" path="res://scenes/player.tscn" id="2_hsdmi"]
 [ext_resource type="PackedScene" uid="uid://t4aiptswpfpn" path="res://scenes/worldObjects/chest.tscn" id="40_l2ef6"]
 [ext_resource type="Script" uid="uid://2dw05wpbnrhw" path="res://scripts/world/tile_highlighter.gd" id="40_r6ssr"]
 [ext_resource type="Script" uid="uid://cr5wf7o1cri08" path="res://scripts/world/debug_coords_label.gd" id="41_6ocxv"]
@@ -46,426 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://dw4kl3afysyfy" path="res://scenes/HotbarUI.tscn" id="42_hiivq"]
 [ext_resource type="PackedScene" uid="uid://6u5tind1udpy" path="res://scenes/crafting_ui.tscn" id="42_rntdg"]
 [ext_resource type="PackedScene" uid="uid://e4mbaidljo73" path="res://scenes/inventory_ui.tscn" id="42_sfkyn"]
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sfkyn"]
-texture = ExtResource("2_4urfc")
-separation = Vector2i(1, 1)
-texture_region_size = Vector2i(111, 128)
-0:0/0 = 0
-0:0/0/texture_origin = Vector2i(0, -30)
-1:0/0 = 0
-1:0/0/texture_origin = Vector2i(0, -30)
-2:0/0 = 0
-2:0/0/texture_origin = Vector2i(0, -30)
-3:0/0 = 0
-3:0/0/texture_origin = Vector2i(0, -30)
-4:0/0 = 0
-4:0/0/texture_origin = Vector2i(0, -30)
-5:0/0 = 0
-5:0/0/texture_origin = Vector2i(0, -30)
-6:0/0 = 0
-6:0/0/texture_origin = Vector2i(0, -30)
-7:0/0 = 0
-7:0/0/texture_origin = Vector2i(0, -30)
-8:0/0 = 0
-8:0/0/texture_origin = Vector2i(0, -30)
-8:1/0 = 0
-8:1/0/texture_origin = Vector2i(0, -30)
-7:1/0 = 0
-7:1/0/texture_origin = Vector2i(0, -30)
-6:1/0 = 0
-6:1/0/texture_origin = Vector2i(0, -30)
-5:1/0 = 0
-5:1/0/texture_origin = Vector2i(0, -30)
-4:1/0 = 0
-4:1/0/texture_origin = Vector2i(0, -30)
-3:1/0 = 0
-3:1/0/texture_origin = Vector2i(0, -30)
-2:1/0 = 0
-2:1/0/texture_origin = Vector2i(0, -56)
-2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -32, -55.5, 0, 0, 32, 55.5, 0)
-1:1/0 = 0
-1:1/0/texture_origin = Vector2i(0, -30)
-1:2/0 = 0
-1:2/0/texture_origin = Vector2i(0, -30)
-0:2/0 = 0
-0:2/0/texture_origin = Vector2i(0, -30)
-0:3/0 = 0
-0:3/0/texture_origin = Vector2i(0, -30)
-1:3/0 = 0
-1:3/0/texture_origin = Vector2i(0, -30)
-2:3/0 = 0
-2:3/0/texture_origin = Vector2i(0, -30)
-3:3/0 = 0
-3:3/0/texture_origin = Vector2i(0, -30)
-4:3/0 = 0
-4:3/0/texture_origin = Vector2i(0, -30)
-5:3/0 = 0
-5:3/0/texture_origin = Vector2i(0, -30)
-6:3/0 = 0
-6:3/0/texture_origin = Vector2i(0, -30)
-7:3/0 = 0
-7:3/0/texture_origin = Vector2i(0, -30)
-7:2/0 = 0
-7:2/0/texture_origin = Vector2i(0, -30)
-8:2/0 = 0
-8:2/0/texture_origin = Vector2i(0, -30)
-8:3/0 = 0
-8:3/0/texture_origin = Vector2i(0, -30)
-4:2/0 = 0
-4:2/0/texture_origin = Vector2i(0, -30)
-3:2/0 = 0
-3:2/0/texture_origin = Vector2i(0, -30)
-2:2/0 = 0
-2:2/0/texture_origin = Vector2i(0, -30)
-0:1/0 = 0
-0:1/0/texture_origin = Vector2i(0, -30)
-5:2/0 = 0
-5:2/0/texture_origin = Vector2i(0, -30)
-6:2/0 = 0
-6:2/0/texture_origin = Vector2i(0, -30)
-8:4/0 = 0
-8:4/0/texture_origin = Vector2i(0, -30)
-7:4/0 = 0
-7:4/0/texture_origin = Vector2i(0, -56)
-7:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -32, -55.5, 0, 0, 32, 55.5, 0)
-6:4/0 = 0
-6:4/0/texture_origin = Vector2i(0, -30)
-5:4/0 = 0
-5:4/0/texture_origin = Vector2i(0, -30)
-4:4/0 = 0
-4:4/0/texture_origin = Vector2i(0, -30)
-3:4/0 = 0
-3:4/0/texture_origin = Vector2i(0, -30)
-2:4/0 = 0
-2:4/0/texture_origin = Vector2i(0, -30)
-1:4/0 = 0
-1:4/0/texture_origin = Vector2i(0, -30)
-0:4/0 = 0
-0:4/0/texture_origin = Vector2i(0, -30)
-0:5/0 = 0
-0:5/0/texture_origin = Vector2i(0, -30)
-1:5/0 = 0
-1:5/0/texture_origin = Vector2i(0, -30)
-2:5/0 = 0
-2:5/0/texture_origin = Vector2i(0, -30)
-3:5/0 = 0
-3:5/0/texture_origin = Vector2i(0, -30)
-4:5/0 = 0
-4:5/0/texture_origin = Vector2i(0, -30)
-5:5/0 = 0
-5:5/0/texture_origin = Vector2i(0, -30)
-6:5/0 = 0
-6:5/0/texture_origin = Vector2i(0, -30)
-7:5/0 = 0
-7:5/0/texture_origin = Vector2i(0, -30)
-8:5/0 = 0
-8:5/0/texture_origin = Vector2i(0, -30)
-8:6/0 = 0
-8:6/0/texture_origin = Vector2i(0, -30)
-7:6/0 = 0
-7:6/0/texture_origin = Vector2i(0, -30)
-6:6/0 = 0
-6:6/0/texture_origin = Vector2i(0, -30)
-5:6/0 = 0
-5:6/0/texture_origin = Vector2i(0, -30)
-4:6/0 = 0
-4:6/0/texture_origin = Vector2i(0, -30)
-3:6/0 = 0
-3:6/0/texture_origin = Vector2i(0, -30)
-2:6/0 = 0
-2:6/0/texture_origin = Vector2i(0, -30)
-1:6/0 = 0
-1:6/0/texture_origin = Vector2i(0, -30)
-0:6/0 = 0
-0:6/0/texture_origin = Vector2i(0, -30)
-0:7/0 = 0
-0:7/0/texture_origin = Vector2i(0, -30)
-1:7/0 = 0
-1:7/0/texture_origin = Vector2i(0, -30)
-2:7/0 = 0
-2:7/0/texture_origin = Vector2i(0, -30)
-3:7/0 = 0
-3:7/0/texture_origin = Vector2i(0, -30)
-4:7/0 = 0
-4:7/0/texture_origin = Vector2i(0, -30)
-5:7/0 = 0
-5:7/0/texture_origin = Vector2i(0, -30)
-6:7/0 = 0
-6:7/0/texture_origin = Vector2i(0, -30)
-7:7/0 = 0
-7:7/0/texture_origin = Vector2i(0, -30)
-8:7/0 = 0
-8:7/0/texture_origin = Vector2i(0, -30)
-8:8/0 = 0
-8:8/0/texture_origin = Vector2i(0, -30)
-7:8/0 = 0
-7:8/0/texture_origin = Vector2i(0, -30)
-7:9/0 = 0
-7:9/0/texture_origin = Vector2i(0, -30)
-6:9/0 = 0
-6:9/0/texture_origin = Vector2i(0, -30)
-5:9/0 = 0
-5:9/0/texture_origin = Vector2i(0, -30)
-4:8/0 = 0
-4:8/0/texture_origin = Vector2i(0, -30)
-3:8/0 = 0
-3:8/0/texture_origin = Vector2i(0, -30)
-2:8/0 = 0
-2:8/0/texture_origin = Vector2i(0, -30)
-1:8/0 = 0
-1:8/0/texture_origin = Vector2i(0, -30)
-0:8/0 = 0
-0:8/0/texture_origin = Vector2i(0, -30)
-0:9/0 = 0
-0:9/0/texture_origin = Vector2i(0, -30)
-1:9/0 = 0
-1:9/0/texture_origin = Vector2i(0, -30)
-2:9/0 = 0
-2:9/0/texture_origin = Vector2i(0, -30)
-3:9/0 = 0
-3:9/0/texture_origin = Vector2i(0, -30)
-5:8/0 = 0
-5:8/0/texture_origin = Vector2i(0, -30)
-6:8/0 = 0
-6:8/0/texture_origin = Vector2i(0, -30)
-8:9/0 = 0
-8:9/0/texture_origin = Vector2i(0, -30)
-4:9/0 = 0
-4:9/0/texture_origin = Vector2i(0, -30)
-0:10/0 = 0
-0:10/0/texture_origin = Vector2i(0, -30)
-1:10/0 = 0
-1:10/0/texture_origin = Vector2i(0, -30)
-2:10/0 = 0
-2:10/0/texture_origin = Vector2i(0, -30)
-3:10/0 = 0
-3:10/0/texture_origin = Vector2i(0, -30)
-4:10/0 = 0
-4:10/0/texture_origin = Vector2i(0, -30)
-5:10/0 = 0
-5:10/0/texture_origin = Vector2i(0, -30)
-6:10/0 = 0
-6:10/0/texture_origin = Vector2i(0, -30)
-7:10/0 = 0
-7:10/0/texture_origin = Vector2i(0, -30)
-8:10/0 = 0
-8:10/0/texture_origin = Vector2i(0, -30)
-8:11/0 = 0
-8:11/0/texture_origin = Vector2i(0, -30)
-7:11/0 = 0
-7:11/0/texture_origin = Vector2i(0, -30)
-6:11/0 = 0
-6:11/0/texture_origin = Vector2i(0, -30)
-5:11/0 = 0
-5:11/0/texture_origin = Vector2i(0, -30)
-4:11/0 = 0
-4:11/0/texture_origin = Vector2i(0, -30)
-3:11/0 = 0
-3:11/0/texture_origin = Vector2i(0, -30)
-2:11/0 = 0
-2:11/0/texture_origin = Vector2i(0, -30)
-1:11/0 = 0
-1:11/0/texture_origin = Vector2i(0, -30)
-0:11/0 = 0
-0:11/0/texture_origin = Vector2i(0, -30)
-0:12/0 = 0
-0:12/0/texture_origin = Vector2i(0, -30)
-1:12/0 = 0
-1:12/0/texture_origin = Vector2i(0, -30)
-2:12/0 = 0
-2:12/0/texture_origin = Vector2i(0, -30)
-3:12/0 = 0
-3:12/0/texture_origin = Vector2i(0, -30)
-4:12/0 = 0
-4:12/0/texture_origin = Vector2i(0, -30)
-5:12/0 = 0
-5:12/0/texture_origin = Vector2i(0, -30)
-6:12/0 = 0
-6:12/0/texture_origin = Vector2i(0, -30)
-7:12/0 = 0
-7:12/0/texture_origin = Vector2i(0, -30)
-8:12/0 = 0
-8:12/0/texture_origin = Vector2i(0, -30)
-8:13/0 = 0
-8:13/0/texture_origin = Vector2i(0, -30)
-7:13/0 = 0
-7:13/0/texture_origin = Vector2i(0, -30)
-6:13/0 = 0
-6:13/0/texture_origin = Vector2i(0, -30)
-5:13/0 = 0
-5:13/0/texture_origin = Vector2i(0, -30)
-4:13/0 = 0
-4:13/0/texture_origin = Vector2i(0, -30)
-3:13/0 = 0
-3:13/0/texture_origin = Vector2i(0, -30)
-0:13/0 = 0
-0:13/0/texture_origin = Vector2i(0, -30)
-1:14/0 = 0
-1:14/0/texture_origin = Vector2i(0, -30)
-2:14/0 = 0
-2:14/0/texture_origin = Vector2i(0, -30)
-3:14/0 = 0
-3:14/0/texture_origin = Vector2i(0, -30)
-4:14/0 = 0
-4:14/0/texture_origin = Vector2i(0, -30)
-5:14/0 = 0
-5:14/0/texture_origin = Vector2i(0, -30)
-6:14/0 = 0
-6:14/0/texture_origin = Vector2i(0, -30)
-7:14/0 = 0
-7:14/0/texture_origin = Vector2i(0, -30)
-8:14/0 = 0
-8:14/0/texture_origin = Vector2i(0, -30)
-2:13/0 = 0
-2:13/0/texture_origin = Vector2i(0, -30)
-1:13/0 = 0
-1:13/0/texture_origin = Vector2i(0, -30)
-0:14/0 = 0
-0:14/0/texture_origin = Vector2i(0, -30)
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q5dlx"]
-texture = ExtResource("3_qkxkb")
-5:1/0 = 0
-5:5/0 = 0
-2:3/0 = 0
-1:5/0 = 0
-1:7/0 = 0
-4:7/0 = 0
-5:7/0 = 0
-3:7/0 = 0
-0:1/0 = 0
-2:1/0 = 0
-0:3/0 = 0
-0:5/0 = 0
-2:5/0 = 0
-3:5/0 = 0
-4:5/0 = 0
-4:3/0 = 0
-5:3/0 = 0
-3:3/0 = 0
-1:3/0 = 0
-1:1/0 = 0
-3:1/0 = 0
-4:1/0 = 0
-2:7/0 = 0
-0:7/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_ep56j"]
-tile_shape = 1
-tile_layout = 5
-tile_size = Vector2i(111, 64)
-physics_layer_0/collision_layer = 1
-sources/5 = SubResource("TileSetAtlasSource_q5dlx")
-sources/1 = SubResource("TileSetAtlasSource_sfkyn")
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_ak6fr"]
-animations = [{
-"frames": [],
-"loop": 1,
-"name": &"default",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("5_4bto7")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_r6ssr")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_6ocxv")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_6r0o2")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_4urfc")
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_sfkyn")
-}, {
-"duration": 1.0,
-"texture": ExtResource("11_rntdg")
-}, {
-"duration": 1.0,
-"texture": ExtResource("12_hiivq")
-}, {
-"duration": 1.0,
-"texture": ExtResource("13_l2ef6")
-}, {
-"duration": 1.0,
-"texture": ExtResource("14_w8l5x")
-}, {
-"duration": 1.0,
-"texture": ExtResource("15_1wuir")
-}, {
-"duration": 1.0,
-"texture": ExtResource("16_o4urf")
-}, {
-"duration": 1.0,
-"texture": ExtResource("17_uo1ep")
-}, {
-"duration": 1.0,
-"texture": ExtResource("18_xksap")
-}, {
-"duration": 1.0,
-"texture": ExtResource("19_ak85g")
-}],
-"loop": 1,
-"name": &"idle",
-"speed": 14.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("20_x4k2d")
-}, {
-"duration": 1.0,
-"texture": ExtResource("21_jws35")
-}, {
-"duration": 1.0,
-"texture": ExtResource("22_haaho")
-}, {
-"duration": 1.0,
-"texture": ExtResource("23_lnvns")
-}, {
-"duration": 1.0,
-"texture": ExtResource("24_sr1wi")
-}, {
-"duration": 1.0,
-"texture": ExtResource("25_wx07a")
-}, {
-"duration": 1.0,
-"texture": ExtResource("26_rnubh")
-}, {
-"duration": 1.0,
-"texture": ExtResource("27_5leur")
-}, {
-"duration": 1.0,
-"texture": ExtResource("28_p421j")
-}, {
-"duration": 1.0,
-"texture": ExtResource("29_p6t5t")
-}, {
-"duration": 1.0,
-"texture": ExtResource("30_byhed")
-}, {
-"duration": 1.0,
-"texture": ExtResource("31_l28v8")
-}, {
-"duration": 1.0,
-"texture": ExtResource("32_dj3rm")
-}, {
-"duration": 1.0,
-"texture": ExtResource("33_iajyf")
-}, {
-"duration": 1.0,
-"texture": ExtResource("34_h3hrn")
-}],
-"loop": 1,
-"name": &"walk",
-"speed": 14.0
-}]
+[ext_resource type="PackedScene" uid="uid://p64cvugmel1i" path="res://scenes/testEnemy.tscn" id="43_1wuir"]
+[ext_resource type="PackedScene" uid="uid://b3tb256jimfsr" path="res://scenes/equipment_ui.tscn" id="45_w8l5x"]
+[ext_resource type="Script" uid="uid://ce3mcaonterwg" path="res://scripts/placement_manager.gd" id="47_l2ef6"]
 
 [sub_resource type="Gradient" id="Gradient_qsgdp"]
 offsets = PackedFloat32Array(0.008032128, 0.43373495, 0.7590361, 0.99196786)
@@ -478,62 +24,49 @@ point_count = 3
 
 [node name="Node2D" type="Node2D" unique_id=1426307025]
 
-[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=510183881 groups=["world_tilemap"]]
-visibility_layer = 129
-position = Vector2(-2, -2)
-tile_set = SubResource("TileSet_ep56j")
+[node name="WorldGenerator" parent="." unique_id=1042612210 node_paths=PackedStringArray("player", "objects_container") instance=ExtResource("1_f6ptj")]
+player = NodePath("../Entities/Player")
+objects_container = NodePath("../Entities")
 
-[node name="Player" type="CharacterBody2D" parent="." unique_id=1263353293 groups=["player"]]
-z_index = 5
-script = ExtResource("4_k8pa6")
+[node name="Entities" type="Node2D" parent="." unique_id=706169844]
+y_sort_enabled = true
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Player" unique_id=206925726]
-polygon = PackedVector2Array(-23, 43, -12, 46, -9, 42, -6, 34, 5, 34, 8, 39, 8, 44, 10, 45, 16, 45, 22, 43, 21, 39, 15, 31, -17, 31)
+[node name="TestEnemy" parent="Entities" unique_id=1079314035 instance=ExtResource("43_1wuir")]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player" unique_id=61732213]
-scale = Vector2(0.8, 0.8)
-sprite_frames = SubResource("SpriteFrames_ak6fr")
-animation = &"idle"
-frame_progress = 0.9342317
-
-[node name="Camera2D" type="Camera2D" parent="Player" unique_id=1401097342]
-zoom = Vector2(0.7, 0.7)
-
-[node name="ChunkedWorld" type="Node2D" parent="." unique_id=1732628033 node_paths=PackedStringArray("tile_map_layer", "player", "objects_container")]
-script = ExtResource("35_af4el")
-tile_map_layer = NodePath("../TileMapLayer")
-player = NodePath("../Player")
-world_seed = 44
-tree_scene = ExtResource("36_qkxkb")
-stump_scene = ExtResource("36_gmqbl")
-pebble_scene = ExtResource("37_4bto7")
-grass_scene = ExtResource("38_r6ssr")
-bush_scene = ExtResource("39_6ocxv")
-objects_container = NodePath("../WorldObjects")
-
-[node name="Chest" parent="." unique_id=1716427385 instance=ExtResource("40_l2ef6")]
+[node name="Chest" parent="Entities" unique_id=1716427385 instance=ExtResource("40_l2ef6")]
+position = Vector2(100, 20)
 cell = Vector2i(10, 10)
 
-[node name="WorldObjects" type="Node2D" parent="." unique_id=412155629]
+[node name="Player" parent="Entities" unique_id=1434151127 instance=ExtResource("2_hsdmi")]
 
 [node name="TileHighlighter" type="Node2D" parent="." unique_id=1799651030 node_paths=PackedStringArray("tile_map_layer")]
 script = ExtResource("40_r6ssr")
-tile_map_layer = NodePath("../TileMapLayer")
+tile_map_layer = NodePath("../WorldGenerator/TileMapLayer0")
+
+[node name="PlacementManager" type="Node2D" parent="." unique_id=154008995 node_paths=PackedStringArray("tile_map_layer")]
+script = ExtResource("47_l2ef6")
+tile_map_layer = NodePath("../WorldGenerator/TileMapLayer0")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1040588163]
 
 [node name="HotbarUI" parent="CanvasLayer" unique_id=435608964 instance=ExtResource("42_hiivq")]
 
 [node name="InventoryUI" parent="CanvasLayer" unique_id=77333087 instance=ExtResource("42_sfkyn")]
+metadata/_edit_use_anchors_ = true
 
 [node name="CraftingUI" parent="CanvasLayer" unique_id=1840096813 instance=ExtResource("42_rntdg")]
+metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="CanvasLayer" unique_id=906604509 node_paths=PackedStringArray("player", "tile_map_layer")]
+[node name="EquipmentUI" parent="CanvasLayer" unique_id=913824189 instance=ExtResource("45_w8l5x")]
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=906604509 node_paths=PackedStringArray("player", "tile_map_layer", "world_generator")]
 offset_right = 40.0
 offset_bottom = 23.0
 script = ExtResource("41_6ocxv")
-player = NodePath("../../Player")
-tile_map_layer = NodePath("../../TileMapLayer")
+player = NodePath("../../Entities/Player")
+tile_map_layer = NodePath("../../WorldGenerator/TileMapLayer0")
+world_generator = NodePath("../../WorldGenerator")
+metadata/_edit_use_anchors_ = true
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="." unique_id=81599611]
 rotation = 0.7853982
@@ -546,3 +79,5 @@ script = ExtResource("42_6r0o2")
 sun_light = NodePath("../DirectionalLight2D")
 sky_color_gradient = SubResource("Gradient_qsgdp")
 sun_energy_curve = SubResource("Curve_7gjvb")
+
+[editable path="WorldGenerator"]

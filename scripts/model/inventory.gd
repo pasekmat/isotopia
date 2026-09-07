@@ -2,7 +2,13 @@ extends Node
 
 signal inventory_changed
 
+## NOVÉ: vyemituje sa pri zmene vybraného slotu (napr. klávesami 1-8).
+signal selected_slot_changed(index: int)
+
 @export var slot_count: int = 32
+
+## Index aktuálne "vybraného" slotu (ako v Minecrafte - to, čo držíš v ruke).
+var selected_slot_index: int = 0
 
 ## Každý prvok je buď null (prázdny slot), alebo Dictionary
 ## {"item_id": GameEnums.ItemType, "amount": int}.
@@ -11,6 +17,19 @@ var slots: Array = []
 
 func _ready() -> void:
 	slots.resize(slot_count)
+
+
+## NOVÉ: nastav aktuálne vybraný slot (napr. z hotbar klávesovej skratky).
+func select_slot(index: int) -> void:
+	if index < 0 or index >= slots.size():
+		return
+	selected_slot_index = index
+	selected_slot_changed.emit(index)
+
+
+## NOVÉ: vráti dáta aktuálne vybraného slotu (alebo null, ak je prázdny).
+func get_selected_item() -> Variant:
+	return slots[selected_slot_index]
 
 
 ## Skús pridať item do inventára. Vráti počet kusov, ktoré sa NEZMESTILI

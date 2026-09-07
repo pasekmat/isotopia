@@ -8,6 +8,7 @@
 size = Vector2(40, 20)
 
 [node name="Tree" type="Area2D" unique_id=1716427385]
+scale = Vector2(2, 2)
 script = ExtResource("1_0k60a")
 resource_name = "Tree"
 hits_required = 6
