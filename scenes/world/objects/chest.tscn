@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://t4aiptswpfpn"]
+
+[ext_resource type="Script" uid="uid://dlwobm8h3wexn" path="res://scripts/model/lootbox.gd" id="1_dded5"]
+[ext_resource type="Texture2D" uid="uid://olt4clqm1wdi" path="res://assets/worldObjects/lootbox/chest.png" id="2_1qrby"]
+[ext_resource type="Resource" uid="uid://c6dkwi6tt213q" path="res://loot_tables/basic_crate.tres" id="2_62e23"]
+[ext_resource type="Texture2D" uid="uid://bqbgyqh2fsea3" path="res://assets/worldObjects/lootbox/chestOpened.png" id="3_62e23"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ak6fr"]
+size = Vector2(44.75, 40.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mdbyr"]
+size = Vector2(43, 24)
+
+[node name="Chest" type="Area2D" unique_id=1716427385]
+position = Vector2(0, 20)
+script = ExtResource("1_dded5")
+loot_table = ExtResource("2_62e23")
+opened_texture = ExtResource("3_62e23")
+
+[node name="Shadow" type="Polygon2D" parent="." unique_id=1549444324]
+position = Vector2(2, -65)
+color = Color(0, 0, 0, 0.34901962)
+polygon = PackedVector2Array(20, 48, 22, 54, 14, 61, 4, 64, -9, 64, -21, 60, -28, 55, -26, 48, -10, 46, 3, 46)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=987922679]
+texture_filter = 1
+position = Vector2(-1, 2)
+scale = Vector2(2, 2)
+texture = ExtResource("2_1qrby")
+offset = Vector2(0, -18)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2128172409]
+position = Vector2(0, -28)
+shape = SubResource("RectangleShape2D_ak6fr")
+
+[node name="PhysicalBlocker" type="StaticBody2D" parent="." unique_id=1493839487]
+position = Vector2(1, -2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicalBlocker" unique_id=2146085681]
+position = Vector2(-0.5, -17)
+shape = SubResource("RectangleShape2D_mdbyr")

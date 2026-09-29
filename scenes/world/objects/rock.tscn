@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://dwej028t12516"]
+
+[ext_resource type="Script" uid="uid://mnv3kywd8ojo" path="res://scripts/model/resource_object.gd" id="1_r1cjj"]
+[ext_resource type="Texture2D" uid="uid://b00vkkldlh4ga" path="res://assets/worldObjects/resource_objects/rock.png" id="2_g0fhq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4acbk"]
+size = Vector2(36.25, 21)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eb33y"]
+radius = 16.0
+height = 32.0
+
+[node name="Rock" type="Area2D" unique_id=487198263]
+script = ExtResource("1_r1cjj")
+resource_name = "Rock"
+hits_required = 10
+loot_item_id = 1
+loot_amount = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=349130486]
+texture_filter = 1
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_g0fhq")
+offset = Vector2(0, -32)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=634675816]
+position = Vector2(0, -23)
+polygon = PackedVector2Array(21, 32, 17, 10, -19, 11, -22, 31, 0, 37)
+
+[node name="PhysicalBlocker" type="StaticBody2D" parent="." unique_id=973935001]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicalBlocker" unique_id=1383841260]
+position = Vector2(-1, 1)
+shape = SubResource("RectangleShape2D_4acbk")
+
+[node name="OcclusionArea" type="Area2D" parent="." unique_id=232329080]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OcclusionArea" unique_id=188491019]
+position = Vector2(-1, -1)
+shape = SubResource("CapsuleShape2D_eb33y")

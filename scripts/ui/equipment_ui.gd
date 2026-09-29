@@ -77,6 +77,7 @@ func _ready() -> void:
 	_player = get_tree().get_first_node_in_group("player")
 	_build_stats_display()
 	_refresh_stats()
+	visible = false
 
 
 func _unhandled_input(event: InputEvent) -> void:

@@ -2,64 +2,78 @@ extends Node2D
 class_name ChunkedWorldGeneratorV2
 
 
-# EXPERIMENTÁLNA verzia ChunkedWorldGeneratorV2 - výška sa rieši cez
-# VIACERO TileMapLayer vrstiev (skladanie jednotkových blokov na seba)
-# namiesto alternative tiles + texture_origin na jednej zdieľanej vrstve.
-# Zvyšok logiky (chunk loading/unloading, spawnovanie objektov,
-# WorldModifications) je zámerne identický s ChunkedWorldGeneratorV2.
-
-## Priraď v Inspectore všetkých 5 TileMapLayer child-ov, v poradí od
-## najnižšej (index 0) po najvyššiu (index 4) - podľa BUCKET_COUNT v
-## TerrainGeneratorV2. Všetky musia mať priradený TEN ISTÝ TileSet resource.
 @export var height_layers: Array[TileMapLayer] = []
+
+const DECORATION_ATLAS_SOURCE_ID: int = 1 
 
 @export var player: Node2D
 @export var world_seed: int = 12345
-@export var chunk_size: int = 16       # počet dlaždíc na jednu stranu chunku
-@export var render_distance: int = 2   # koľko chunkov okolo hráča držať vygenerovaných
-@export var unload_distance: int = 4   # od akej vzdialenosti (v chunkoch) sa chunk uvoľní
+@export var chunk_size: int = 16     
+@export var render_distance: int = 2 
+@export var unload_distance: int = 4 
 
-const ATLAS_SOURCE_ID: int = 2
+const ATLAS_SOURCE_ID: int = 0
 const HEIGHT_STEP_PX: int = 64  # rovnaká hodnota ako v ChunkedWorldGeneratorV2
 
-# --- spawnovanie objektov (identické s ChunkedWorldGeneratorV2) ---
+
 @export var tree_scene: PackedScene
 @export var stump_scene: PackedScene
 @export var pebble_scene: PackedScene
 @export var grass_scene: PackedScene
 @export var bush_scene: PackedScene
+@export var rock_scene: PackedScene
+@export var coalrock_scene: PackedScene
 
 @export var objects_container: Node2D
+
+@export var occlusion_fade_radius: float = 100.0
+@export var occlusion_min_alpha: float = 0.35
 # --- koniec tejto časti ---
 
 var terrain: TerrainGeneratorV2
 var loaded_chunks: Dictionary = {}  # kľúč: Vector2i(chunk_x, chunk_y) -> true
 var current_player_chunk: Vector2i = Vector2i(999999, 999999)
 
+
 var chunk_objects: Dictionary = {}  # kľúč: Vector2i(chunk_x, chunk_y) -> Array[ResourceObject]
+## [výška][kategória] -> TileMapLayer, vytvorené automaticky v _ready.
+var _decoration_layers: Array = []
 
-
+var tile_map_layer: TileMapLayer:
+	get:
+		return height_layers[0] if not height_layers.is_empty() else null
+		
 func _ready() -> void:
+	add_to_group("world_generator")
 	terrain = TerrainGeneratorV2.new(world_seed)
 	_setup_layer_offsets()
+	_create_decoration_layers()
 
 	if objects_container == null:
 		objects_container = Node2D.new()
 		objects_container.name = "WorldObjects"
 		add_sibling.call_deferred(objects_container)
+	
 
-
-# NOVÉ oproti ChunkedWorldGeneratorV2: každá vrstva dostane vizuálny posun
-# nahor podľa svojho indexu, a zodpovedajúci z_index, aby sa vyššie vrstvy
-# kreslili navrchu tých nižších.
 func _setup_layer_offsets() -> void:
+	var shader: Shader = load("res://shaders/terrain_occlusion_fade.gdshader")
+
 	for i in height_layers.size():
 		var layer: TileMapLayer = height_layers[i]
 		layer.position.y = -HEIGHT_STEP_PX * i
-		layer.z_index = i
+		layer.z_index = i * 2
+
+		var mat := ShaderMaterial.new()
+		mat.shader = shader
+		mat.set_shader_parameter("layer_height", float(i))
+		mat.set_shader_parameter("fade_radius", occlusion_fade_radius)
+		mat.set_shader_parameter("min_alpha", occlusion_min_alpha)
+		layer.material = mat
 
 
 func _process(_delta: float) -> void:
+	_update_layer_shader_uniforms()
+	
 	if player == null or height_layers.is_empty():
 		return
 
@@ -117,11 +131,19 @@ func _generate_chunk(chunk_coord: Vector2i) -> void:
 
 			var object_type: GameEnums.WorldObjectType = terrain.get_object_type(x, y, biome_dict.get("Biome"))
 			var cell_state: Dictionary = WorldModifications.get_cell_state(cell)
-			if object_type != GameEnums.WorldObjectType.NONE and cell_state.get("type", "") != "destroyed":
+			var has_object: bool = object_type != GameEnums.WorldObjectType.NONE and cell_state.get("type", "") != "destroyed"
+
+			if has_object:
 				var instance: ResourceObject = _spawn_object(object_type, cell, height)
 				if instance != null:
 					spawned.append(instance)
-
+			else:
+				var decorations: Array[Vector2i] = terrain.get_decorations(x, y, biome_dict.get("Biome"))
+				if height < _decoration_layers.size():
+					for c in decorations.size():
+						if decorations[c] != Vector2i(-1, -1):
+							_decoration_layers[height][c].set_cell(cell, DECORATION_ATLAS_SOURCE_ID, decorations[c])
+							
 	loaded_chunks[chunk_coord] = true
 	chunk_objects[chunk_coord] = spawned
 
@@ -139,24 +161,22 @@ func _spawn_object(object_type: GameEnums.WorldObjectType, cell: Vector2i, heigh
 			scene = grass_scene
 		GameEnums.WorldObjectType.PEBBLE:
 			scene = pebble_scene
+		GameEnums.WorldObjectType.ROCK:
+			scene = rock_scene
+		GameEnums.WorldObjectType.COALROCK:
+			scene = coalrock_scene
 
 	if scene == null:
 		return null
 
 	var instance: ResourceObject = scene.instantiate()
 
-	# Rovnaké poradie ako v ChunkedWorldGeneratorV2: cell PRED add_child(),
-	# global_position AŽ PO.
 	instance.cell = cell
 
 	objects_container.add_child(instance)
 
-	# Rovnaký princíp manuálneho height offsetu ako predtým - len teraz
-	# počítaný oproti height_layers[0] (bez vlastného posunu) namiesto
-	# jedinej zdieľanej vrstvy s alternative tiles.
 	var reference_layer: TileMapLayer = height_layers[0]
 	instance.global_position = reference_layer.to_global(reference_layer.map_to_local(cell)) - Vector2(0, height * HEIGHT_STEP_PX)
-
 	return instance
 
 
@@ -171,6 +191,11 @@ func _unload_chunk(chunk_coord: Vector2i) -> void:
 			# VŠETKÝCH vrstvách, keďže mohla mať tile na viacerých naraz.
 			for layer in height_layers:
 				layer.erase_cell(cell)
+				
+			for per_height in _decoration_layers:
+				for layer in per_height:
+					layer.erase_cell(cell)
+	
 
 	if chunk_objects.has(chunk_coord):
 		for obj in chunk_objects[chunk_coord]:
@@ -189,3 +214,27 @@ func _get_fill_start_level(x: int, y: int, height: int) -> int:
 		min_neighbor_height = min(min_neighbor_height, neighbor_height)
 
 	return min_neighbor_height
+
+
+func _update_layer_shader_uniforms() -> void:
+	for layer in height_layers:
+		var mat: ShaderMaterial = layer.material
+		if mat != null:
+			mat.set_shader_parameter("player_world_pos", player.global_position)
+			mat.set_shader_parameter("player_height", float(player.current_height))
+
+
+func _create_decoration_layers() -> void:
+	var category_count: int = TerrainGeneratorV2.DECORATION_CATEGORIES.size()
+
+	for h in height_layers.size():
+		var per_height: Array[TileMapLayer] = []
+		for c in category_count:
+			var layer := TileMapLayer.new()
+			layer.name = "Deco_h%d_c%d" % [h, c]
+			layer.tile_set = height_layers[0].tile_set
+			layer.position.y = -HEIGHT_STEP_PX * h
+			layer.z_index = h * 2 + 1
+			add_child(layer)
+			per_height.append(layer)
+		_decoration_layers.append(per_height)

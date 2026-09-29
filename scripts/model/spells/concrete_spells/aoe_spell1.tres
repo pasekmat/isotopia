@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="BaseSpell" format=3 uid="uid://du687lqka1rmr"]
+
+[ext_resource type="Script" uid="uid://bhrpcjtt53gmt" path="res://scripts/model/spells/cost_type/no_spell_cost.gd" id="1_aphd8"]
+[ext_resource type="Script" uid="uid://k3hyk1avcg5j" path="res://scripts/model/spells/spell_effect.gd" id="1_bxyfi"]
+[ext_resource type="Script" uid="uid://bc6e1flwi5o6n" path="res://scripts/model/spells/base_spell.gd" id="2_le4id"]
+[ext_resource type="Script" uid="uid://cyut1wbcr754t" path="res://scripts/model/spells/spell_effects/damage_effect.gd" id="3_wdk8m"]
+[ext_resource type="Texture2D" uid="uid://dgmx1fkyl6rwr" path="res://icon.svg" id="4_ipw5j"]
+[ext_resource type="Script" uid="uid://dbddp4uuqw662" path="res://scripts/model/spells/spell_types/aoe_spell.gd" id="6_jnjta"]
+[ext_resource type="PackedScene" uid="uid://c7nb7ekf6blkd" path="res://aoe_zone.tscn" id="7_22j3k"]
+
+[sub_resource type="Resource" id="Resource_3hxy7"]
+script = ExtResource("1_aphd8")
+metadata/_custom_type_script = "uid://bhrpcjtt53gmt"
+
+[sub_resource type="Resource" id="Resource_d0205"]
+script = ExtResource("3_wdk8m")
+strength_scaling = 0.3
+metadata/_custom_type_script = "uid://cyut1wbcr754t"
+
+[sub_resource type="Resource" id="Resource_vb2v6"]
+script = ExtResource("6_jnjta")
+vfx_scene = ExtResource("7_22j3k")
+radius = 300.0
+telegraph_duration = 5.0
+metadata/_custom_type_script = "uid://dbddp4uuqw662"
+
+[resource]
+script = ExtResource("2_le4id")
+id = "aoespell1"
+display_name = "AOESpell1"
+icon = ExtResource("4_ipw5j")
+cast_range = 500.0
+spell_type = SubResource("Resource_vb2v6")
+cost = SubResource("Resource_3hxy7")
+effects = Array[ExtResource("1_bxyfi")]([SubResource("Resource_d0205")])
+metadata/_custom_type_script = "uid://bc6e1flwi5o6n"

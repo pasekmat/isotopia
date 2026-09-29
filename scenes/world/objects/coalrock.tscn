@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://bh7lbg3w5de8c"]
+
+[ext_resource type="Script" uid="uid://mnv3kywd8ojo" path="res://scripts/model/resource_object.gd" id="1_oavly"]
+[ext_resource type="Texture2D" uid="uid://c1bmpbsxmu3h7" path="res://assets/worldObjects/resource_objects/coalrock.png" id="2_gewt0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4eg3k"]
+size = Vector2(77, 21.5)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6wck4"]
+radius = 28.0
+height = 56.0
+
+[node name="Coalrock" type="Area2D" unique_id=643217622]
+script = ExtResource("1_oavly")
+resource_name = "CoalRock"
+loot_item_id = 1
+occlusion_check_radius = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=664425821]
+texture_filter = 1
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_gewt0")
+offset = Vector2(0, -32)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1199514516]
+position = Vector2(0, -70)
+polygon = PackedVector2Array(41, 69, -43, 69, -24, 29, -12, 11, 4, 9, 32, 36)
+
+[node name="PhysicalBlocker" type="StaticBody2D" parent="." unique_id=555193079]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicalBlocker" unique_id=1177098150]
+position = Vector2(0, -12)
+shape = SubResource("RectangleShape2D_4eg3k")
+
+[node name="OcclusionArea" type="Area2D" parent="." unique_id=217670181]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OcclusionArea" unique_id=1550881245]
+position = Vector2(-1, -30)
+shape = SubResource("CapsuleShape2D_6wck4")

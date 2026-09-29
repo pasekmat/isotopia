@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://c7nb7ekf6blkd"]
+
+[ext_resource type="Script" uid="uid://8cns5mtrhxlj" path="res://scripts/model/spells/spell_types/aoe_zone.gd" id="1_lnp11"]
+[ext_resource type="Texture2D" uid="uid://cpe11gwytou0j" path="res://assets/aoearea.png" id="2_sv2g7"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iopsf"]
+radius = 18.0
+height = 82.0
+
+[node name="Area2D" type="Area2D" unique_id=537662423]
+script = ExtResource("1_lnp11")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=390663108]
+texture_filter = 1
+texture = ExtResource("2_sv2g7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1178527820]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_iopsf")

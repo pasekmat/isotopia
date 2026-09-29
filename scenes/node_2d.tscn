@@ -1,16 +1,17 @@
 [gd_scene format=3 uid="uid://bck4a0xemc1rj"]
 
-[ext_resource type="PackedScene" uid="uid://crtobfevjx7im" path="res://scenes/world_generator.tscn" id="1_f6ptj"]
-[ext_resource type="PackedScene" uid="uid://mvw3tl4y2cfx" path="res://scenes/player.tscn" id="2_hsdmi"]
-[ext_resource type="PackedScene" uid="uid://t4aiptswpfpn" path="res://scenes/worldObjects/chest.tscn" id="40_l2ef6"]
+[ext_resource type="PackedScene" uid="uid://crtobfevjx7im" path="res://scenes/world/world_generator.tscn" id="1_f6ptj"]
+[ext_resource type="PackedScene" uid="uid://mvw3tl4y2cfx" path="res://scenes/characters/player.tscn" id="2_hsdmi"]
+[ext_resource type="Script" uid="uid://b6hf24cva3yu7" path="res://scripts/world/height_debug_overlay.gd" id="13_hsdmi"]
+[ext_resource type="PackedScene" uid="uid://t4aiptswpfpn" path="res://scenes/world/objects/chest.tscn" id="40_l2ef6"]
 [ext_resource type="Script" uid="uid://2dw05wpbnrhw" path="res://scripts/world/tile_highlighter.gd" id="40_r6ssr"]
 [ext_resource type="Script" uid="uid://cr5wf7o1cri08" path="res://scripts/world/debug_coords_label.gd" id="41_6ocxv"]
 [ext_resource type="Script" uid="uid://c6js1w63gjyw6" path="res://scripts/world/day_night_cycle.gd" id="42_6r0o2"]
-[ext_resource type="PackedScene" uid="uid://dw4kl3afysyfy" path="res://scenes/HotbarUI.tscn" id="42_hiivq"]
-[ext_resource type="PackedScene" uid="uid://6u5tind1udpy" path="res://scenes/crafting_ui.tscn" id="42_rntdg"]
-[ext_resource type="PackedScene" uid="uid://e4mbaidljo73" path="res://scenes/inventory_ui.tscn" id="42_sfkyn"]
-[ext_resource type="PackedScene" uid="uid://p64cvugmel1i" path="res://scenes/testEnemy.tscn" id="43_1wuir"]
-[ext_resource type="PackedScene" uid="uid://b3tb256jimfsr" path="res://scenes/equipment_ui.tscn" id="45_w8l5x"]
+[ext_resource type="PackedScene" uid="uid://dw4kl3afysyfy" path="res://scenes/ui/HotbarUI.tscn" id="42_hiivq"]
+[ext_resource type="PackedScene" uid="uid://6u5tind1udpy" path="res://scenes/ui/crafting_ui.tscn" id="42_rntdg"]
+[ext_resource type="PackedScene" uid="uid://e4mbaidljo73" path="res://scenes/ui/inventory_ui.tscn" id="42_sfkyn"]
+[ext_resource type="PackedScene" uid="uid://p64cvugmel1i" path="res://scenes/characters/testEnemy.tscn" id="43_1wuir"]
+[ext_resource type="PackedScene" uid="uid://b3tb256jimfsr" path="res://scenes/ui/equipment_ui.tscn" id="45_w8l5x"]
 [ext_resource type="Script" uid="uid://ce3mcaonterwg" path="res://scripts/placement_manager.gd" id="47_l2ef6"]
 
 [sub_resource type="Gradient" id="Gradient_qsgdp"]
@@ -34,8 +35,7 @@ y_sort_enabled = true
 [node name="TestEnemy" parent="Entities" unique_id=1079314035 instance=ExtResource("43_1wuir")]
 
 [node name="Chest" parent="Entities" unique_id=1716427385 instance=ExtResource("40_l2ef6")]
-position = Vector2(100, 20)
-cell = Vector2i(10, 10)
+position = Vector2(256, 20)
 
 [node name="Player" parent="Entities" unique_id=1434151127 instance=ExtResource("2_hsdmi")]
 
@@ -43,9 +43,10 @@ cell = Vector2i(10, 10)
 script = ExtResource("40_r6ssr")
 tile_map_layer = NodePath("../WorldGenerator/TileMapLayer0")
 
-[node name="PlacementManager" type="Node2D" parent="." unique_id=154008995 node_paths=PackedStringArray("tile_map_layer")]
+[node name="PlacementManager" type="Node2D" parent="." unique_id=154008995 node_paths=PackedStringArray("tile_map_layer", "placement_container")]
 script = ExtResource("47_l2ef6")
 tile_map_layer = NodePath("../WorldGenerator/TileMapLayer0")
+placement_container = NodePath("../Entities")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1040588163]
 
@@ -69,15 +70,21 @@ world_generator = NodePath("../../WorldGenerator")
 metadata/_edit_use_anchors_ = true
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="." unique_id=81599611]
+visible = false
 rotation = 0.7853982
-color = Color(0.9882353, 1, 0.35686275, 1)
-energy = 0.7
+color = Color(0.98581904, 1, 0.7032275, 1)
 shadow_color = Color(0, 0, 0, 0.6431373)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=612673382 node_paths=PackedStringArray("sun_light")]
+visible = false
 script = ExtResource("42_6r0o2")
 sun_light = NodePath("../DirectionalLight2D")
+day_length_seconds = 300.0
 sky_color_gradient = SubResource("Gradient_qsgdp")
 sun_energy_curve = SubResource("Curve_7gjvb")
+
+[node name="HeightDebug" type="Node2D" parent="." unique_id=727287969]
+visible = false
+script = ExtResource("13_hsdmi")
 
 [editable path="WorldGenerator"]

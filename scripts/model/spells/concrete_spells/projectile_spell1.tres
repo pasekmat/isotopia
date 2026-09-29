@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="BaseSpell" format=3 uid="uid://lytlsi3sjcg4"]
+
+[ext_resource type="Script" uid="uid://b6seqblavntv4" path="res://scripts/model/spells/cost_type/health_spell_cost.gd" id="1_8heow"]
+[ext_resource type="Script" uid="uid://k3hyk1avcg5j" path="res://scripts/model/spells/spell_effect.gd" id="1_h2248"]
+[ext_resource type="Script" uid="uid://bc6e1flwi5o6n" path="res://scripts/model/spells/base_spell.gd" id="2_pggrw"]
+[ext_resource type="Script" uid="uid://cyut1wbcr754t" path="res://scripts/model/spells/spell_effects/damage_effect.gd" id="3_c6nda"]
+[ext_resource type="Texture2D" uid="uid://dgmx1fkyl6rwr" path="res://icon.svg" id="4_3t7dl"]
+[ext_resource type="PackedScene" uid="uid://x1vw8012p7u2" path="res://scenes/Projectile.tscn" id="6_c6nda"]
+[ext_resource type="Script" uid="uid://cxbwan1mxnge1" path="res://scripts/model/spells/spell_types/projectile_spell.gd" id="6_p7gc8"]
+
+[sub_resource type="Resource" id="Resource_cooei"]
+script = ExtResource("1_8heow")
+amount = 20
+metadata/_custom_type_script = "uid://b6seqblavntv4"
+
+[sub_resource type="Resource" id="Resource_c6nda"]
+script = ExtResource("3_c6nda")
+base_damage = 20
+intelligence_scaling = 5.0
+metadata/_custom_type_script = "uid://cyut1wbcr754t"
+
+[sub_resource type="Resource" id="Resource_oifbl"]
+script = ExtResource("6_p7gc8")
+projectile_scene = ExtResource("6_c6nda")
+lifetime = 5.0
+spread_degrees = 0.0
+metadata/_custom_type_script = "uid://cxbwan1mxnge1"
+
+[resource]
+script = ExtResource("2_pggrw")
+id = "projectilespell1"
+display_name = "Projectilespell1"
+icon = ExtResource("4_3t7dl")
+cooldown = 2.0
+cast_range = 500.0
+spell_type = SubResource("Resource_oifbl")
+cost = SubResource("Resource_cooei")
+effects = Array[ExtResource("1_h2248")]([SubResource("Resource_c6nda")])
+metadata/_custom_type_script = "uid://bc6e1flwi5o6n"

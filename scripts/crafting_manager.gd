@@ -150,7 +150,7 @@ func craft(recipe_id: GameEnums.RecipeType) -> bool:
 	for req in recipe.required_items:
 		Inventory.remove_item(req.item, req.amount)
 
-	Inventory.add_item(recipe.result_item_id, recipe.result_amount)
+	Inventory.add_item(recipe.result_item.id, recipe.result_amount)
 
 	_add_category_xp(recipe.category, recipe.xp_reward)
 	crafted.emit(recipe)

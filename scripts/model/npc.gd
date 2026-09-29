@@ -28,6 +28,8 @@ var _player: Node2D
 var _is_provoked: bool = false  # pre NEUTRAL - stalo sa agresívnym po zásahu
 var _attack_timer: float = 0.0
 
+@onready var status_holder: StatusEffectHolder = $StatusEffectHolder
+
 
 func _ready() -> void:
 	current_health = max_health
@@ -39,7 +41,7 @@ func _ready() -> void:
 	input_event.connect(_on_input_event)
 
 	animated_sprite.play("idle")
-
+	add_to_group("npc")
 
 func _physics_process(delta: float) -> void:
 	_attack_timer = max(0.0, _attack_timer - delta)
@@ -175,3 +177,7 @@ func _die() -> void:
 	state = GameEnums.NPCState.DEAD
 	# TODO: loot drop (podobne ako ResourceObject.depleted), animácia smrti
 	queue_free()
+	
+	
+func heal(amount: int) -> void:
+	current_health = min(current_health + amount, max_health)

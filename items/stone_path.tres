@@ -1,14 +1,14 @@
 [gd_resource type="Resource" script_class="Item" format=3 uid="uid://cu2khud0unrk5"]
 
 [ext_resource type="Script" uid="uid://dtcutdlvlnu7j" path="res://scripts/model/item.gd" id="1_tcrwo"]
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_kc3m6"]
-specular_color = Color(0.6664514, 0.93503994, 0.96385247, 1)
+[ext_resource type="Texture2D" uid="uid://rpij8avibxh1" path="res://assets/items/stonePath.png" id="1_tj0sl"]
+[ext_resource type="PackedScene" uid="uid://uygk8dbcjkdc" path="res://scenes/buildable/stone_path.tscn" id="2_l68ll"]
 
 [resource]
 script = ExtResource("1_tcrwo")
 id = 14
 display_name = "Stone Path"
-icon = SubResource("CanvasTexture_kc3m6")
+icon = ExtResource("1_tj0sl")
 max_stack_size = 64
+placeable_scene = ExtResource("2_l68ll")
 metadata/_custom_type_script = "uid://dtcutdlvlnu7j"

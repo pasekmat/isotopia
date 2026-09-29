@@ -149,5 +149,24 @@ enum WorldObjectType{
 	BUSH,
 	TREE,
 	TREESTUMP,
-	PEBBLE
+	PEBBLE,
+	ROCK,
+	COALROCK,
+}
+
+enum SpellId{
+	A,
+	B,
+	C,
+	D
+}
+
+enum StatusEffectFlagId{
+	STUNNED,
+	SLOWED,
+	POISONED,
+	BURNING,
+	ROOTED,
+	DISARMED,
+	SILENCED
 }

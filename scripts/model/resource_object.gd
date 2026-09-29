@@ -25,14 +25,22 @@ signal depleted(resource_object: ResourceObject)
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var interaction_shape: CollisionPolygon2D = $CollisionPolygon2D
-# --- koniec tejto časti ---
+@onready var occlusion_area: Area2D = $OcclusionArea
 
+@export var occlusion_check_radius: int = 5
 
-# --- hover zvýraznenie + klik na interakciu ---
 @export var highlight_modulate: Color = Color(1.35, 1.35, 1.35)
 
 ## Maximálna vzdialenosť (v pixeloch) od hráča, z ktorej ešte funguje interakcia.
 @export var max_interaction_distance: float = 100.0
+
+@export var occlusion_fade_alpha: float = 0.5
+
+var _is_occluded: bool = false
+var _is_highlighted: bool = false
+
+
+var _world_generator: Node
 
 var _default_modulate: Color
 var _tile_highlighter: Node2D
@@ -53,7 +61,12 @@ func _ready() -> void:
 	if saved_state.get("type", "") == "damaged":
 		hits_remaining = saved_state.get("hits_remaining", hits_required)
 
-	z_index = 10  # vyššie než ktorákoľvek z 5 terénnych vrstiev (0-4)
+	_world_generator = get_tree().get_first_node_in_group("world_generator")
+	if _world_generator != null:
+		z_index = _compute_z_index()
+	else:
+		z_index = 1
+		
 	add_to_group("interactable")
 	_apply_random_variant()
 
@@ -65,23 +78,31 @@ func _ready() -> void:
 	mouse_entered.connect(_on_mouse_entered)
 	mouse_exited.connect(_on_mouse_exited)
 	input_event.connect(_on_input_event)
-	
-	queue_redraw()
+	occlusion_area.body_entered.connect(_on_occlusion_area_body_entered)
+	occlusion_area.body_exited.connect(_on_occlusion_area_body_exited)
 
 func _on_mouse_entered() -> void:
-	sprite.modulate = highlight_modulate
-	if _tile_highlighter != null:
-		_tile_highlighter.highlight_cell(cell)
+	HoverManager.register_hover(self)
 
 
 func _on_mouse_exited() -> void:
-	sprite.modulate = _default_modulate
-	if _tile_highlighter != null:
-		_tile_highlighter.clear_highlight()
+	HoverManager.unregister_hover(self)
+
+
+func set_hover_visual(is_hovered: bool) -> void:
+	_is_highlighted = is_hovered
+	_update_modulate()
+
+	if is_hovered:
+		if _tile_highlighter != null:
+			_tile_highlighter.highlight_cell(cell)
+	else:
+		if _tile_highlighter != null:
+			_tile_highlighter.clear_highlight()
 
 
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
-	if event.is_action_pressed("smash") and _is_player_in_range():
+	if event.is_action_pressed("smash") and HoverManager.is_active(self) and _is_player_in_range():
 		interact()
 
 
@@ -137,5 +158,35 @@ func interact() -> void:
 	else:
 		WorldModifications.set_cell_state(cell, {"type": "damaged", "hits_remaining": hits_remaining})
 
-func _draw() -> void:
-	draw_circle(Vector2.ZERO, 20, Color.RED)
+func _compute_z_index() -> int:
+	if resource_name != "Tree" and resource_name != "Rock" and resource_name != "CoalRock" and resource_name != "Bush":
+		var height: int = max(_world_generator.terrain.get_height_level(cell.x, cell.y), 0)
+		return height * 2 + 1
+		
+	var max_height: int = 0
+	for dx in range(-occlusion_check_radius, occlusion_check_radius + 1):
+		for dy in range(-occlusion_check_radius, occlusion_check_radius + 1):
+			var h: int = max(_world_generator.terrain.get_height_level(cell.x + dx, cell.y + dy), 0)
+			max_height = max(max_height, h)
+	return max_height * 2 + 1
+
+
+
+func _on_occlusion_area_body_entered(body: Node2D) -> void:
+	if body == _player:
+		_is_occluded = true
+		_update_modulate()
+
+
+func _on_occlusion_area_body_exited(body: Node2D) -> void:
+	if body == _player:
+		_is_occluded = false
+		_update_modulate()
+
+
+func _update_modulate() -> void:
+	var color: Color = highlight_modulate if _is_highlighted else _default_modulate
+	color.a = occlusion_fade_alpha if _is_occluded else 1.0
+	sprite.modulate = color
+	
+	

@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://cgtfb2ly8ayaa"]
+
+[ext_resource type="Script" uid="uid://mnv3kywd8ojo" path="res://scripts/model/resource_object.gd" id="1_0xm4r"]
+[ext_resource type="Texture2D" uid="uid://bi8jdc3e0atox" path="res://assets/worldObjects/resource_objects/bushBlue.png" id="2_lf3en"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lf3en"]
+radius = 23.749992
+height = 89.99999
+
+[node name="Bush" type="Area2D" unique_id=1099216966]
+scale = Vector2(0.8, 0.8)
+script = ExtResource("1_0xm4r")
+resource_name = "Bush"
+hits_required = 2
+loot_item_id = 0
+loot_amount = 2
+occlusion_check_radius = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=987922679]
+texture_filter = 1
+texture = ExtResource("2_lf3en")
+offset = Vector2(0, -32)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=983645935]
+scale = Vector2(0.99999994, 0.99999994)
+polygon = PackedVector2Array(-18.750002, 12.500001, -43.750004, -2.5000002, -48.750004, -36.250004, -23.750002, -62.500008, 16.250002, -63.750008, 48.750004, -33.750004, 46.250004, -5.0000005, 20.000002, 11.250001)
+
+[node name="OcclusionArea" type="Area2D" parent="." unique_id=545879276]
+position = Vector2(2, -15)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OcclusionArea" unique_id=745854172]
+position = Vector2(-1.9999999, -21.25)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_lf3en")

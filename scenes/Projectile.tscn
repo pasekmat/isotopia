@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://x1vw8012p7u2"]
+
+[ext_resource type="Texture2D" uid="uid://d2w3gnms6b27d" path="res://assets/fireball.png" id="1_dprbf"]
+[ext_resource type="Script" uid="uid://bw5ap86e07u65" path="res://scripts/model/spells/projectiles/spell_projectile.gd" id="1_vihyi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_iopsf"]
+radius = 8.0
+
+[node name="Projectile" type="Area2D" unique_id=295898514]
+script = ExtResource("1_vihyi")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1654579976]
+texture_filter = 1
+texture = ExtResource("1_dprbf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=538907387]
+position = Vector2(3, 0)
+shape = SubResource("CircleShape2D_iopsf")

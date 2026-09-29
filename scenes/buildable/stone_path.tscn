@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://uygk8dbcjkdc"]
+
+[ext_resource type="Script" uid="uid://b1qu02xlb44e4" path="res://scripts/model/placed_structure.gd" id="1_b7nls"]
+[ext_resource type="Texture2D" uid="uid://rpij8avibxh1" path="res://assets/items/stonePath.png" id="2_34rv2"]
+
+[node name="StonePath" type="Area2D" unique_id=2035601191]
+script = ExtResource("1_b7nls")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=454590305]
+texture = ExtResource("2_34rv2")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1391172114]
+polygon = PackedVector2Array(-49, 1, 0, -27, 52, 0, 0, 30)

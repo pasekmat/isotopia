@@ -12,7 +12,8 @@ metadata/_custom_type_script = "uid://tfxypbh6p5hi"
 [sub_resource type="Resource" id="Resource_j1cgb"]
 script = ExtResource("1_4xbba")
 item = 1
-max_amount = 8
+min_amount = 8
+max_amount = 20
 metadata/_custom_type_script = "uid://tfxypbh6p5hi"
 
 [sub_resource type="Resource" id="Resource_6ir3j"]

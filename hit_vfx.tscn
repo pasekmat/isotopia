@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://cnc5v5dfsod5d"]
+
+[ext_resource type="Script" uid="uid://ecxv5tc4xi41" path="res://scripts/model/spells/hit_vfx.gd" id="1_f3m76"]
+[ext_resource type="Texture2D" uid="uid://dbe2ukkwltkb6" path="res://assets/tmpBlow.png" id="2_a5eyx"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_iopsf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_a5eyx")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 7.0
+}]
+
+[node name="HitVfx" type="Node2D" unique_id=751753475]
+script = ExtResource("1_f3m76")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=137168387]
+sprite_frames = SubResource("SpriteFrames_iopsf")
+frame_progress = 0.15588391

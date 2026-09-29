@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="Recipe" format=3 uid="uid://drmemkp2p0vy4"]
 
-[ext_resource type="Texture2D" uid="uid://dgmx1fkyl6rwr" path="res://icon.svg" id="1_yfh65"]
 [ext_resource type="Script" uid="uid://bfkjs5eaivfkp" path="res://scripts/model/item_requirement.gd" id="2_137wo"]
 [ext_resource type="Script" uid="uid://8bge2rs7i1q2" path="res://scripts/model/recipe.gd" id="2_fpkhr"]
+[ext_resource type="Resource" uid="uid://dl567tde3r53e" path="res://items/longsword.tres" id="2_tihop"]
 
 [sub_resource type="Resource" id="Resource_137wo"]
 script = ExtResource("2_137wo")
@@ -13,7 +13,7 @@ metadata/_custom_type_script = "uid://bfkjs5eaivfkp"
 script = ExtResource("2_fpkhr")
 id = 1
 display_name = "Longsword"
-icon = ExtResource("1_yfh65")
+result_item = ExtResource("2_tihop")
 required_items = Array[ExtResource("2_137wo")]([SubResource("Resource_137wo")])
 result_item_id = 13
 category = 2

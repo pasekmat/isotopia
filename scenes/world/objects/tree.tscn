@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://ciirdqfr1yet4"]
+
+[ext_resource type="Script" uid="uid://mnv3kywd8ojo" path="res://scripts/model/resource_object.gd" id="1_0k60a"]
+[ext_resource type="Texture2D" uid="uid://d4a3f2sypdxlg" path="res://assets/worldObjects/resource_objects/tree1.png" id="3_7j6fx"]
+[ext_resource type="Texture2D" uid="uid://c8f2abkcxp2xw" path="res://assets/worldObjects/resource_objects/tree2.png" id="4_18mvg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mdbyr"]
+size = Vector2(40, 20)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iopsf"]
+radius = 43.0
+height = 118.0
+
+[node name="Tree" type="Area2D" unique_id=1716427385]
+scale = Vector2(2, 2)
+script = ExtResource("1_0k60a")
+resource_name = "Tree"
+hits_required = 6
+loot_item_id = 0
+loot_amount = 8
+texture_variants = Array[Texture2D]([ExtResource("4_18mvg"), ExtResource("3_7j6fx")])
+variant_weights = Array[float]([0.6, 0.4])
+collision_scale_variants = Array[float]([1.0, 0.75])
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=987922679]
+texture_filter = 1
+scale = Vector2(3, 3)
+texture = ExtResource("4_18mvg")
+offset = Vector2(0, -18)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=2401342]
+position = Vector2(0, -58)
+polygon = PackedVector2Array(-45, 16, -21, 54, -17, 66, 21, 64, 20, 43, 44, -26, -2, -59, -31, -47)
+
+[node name="PhysicalBlocker" type="StaticBody2D" parent="." unique_id=1493839487]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicalBlocker" unique_id=2146085681]
+position = Vector2(1, -4)
+shape = SubResource("RectangleShape2D_mdbyr")
+
+[node name="OcclusionArea" type="Area2D" parent="." unique_id=188545227]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OcclusionArea" unique_id=1633615021]
+position = Vector2(-3.5, -60)
+shape = SubResource("CapsuleShape2D_iopsf")

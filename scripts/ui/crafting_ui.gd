@@ -49,7 +49,7 @@ func _add_row(recipe: Recipe) -> void:
 	icon.custom_minimum_size = Vector2(32, 32)
 	icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	icon.texture = recipe.icon
+	icon.texture = recipe.result_item.icon
 	row.add_child(icon)
 
 	var name_label := Label.new()

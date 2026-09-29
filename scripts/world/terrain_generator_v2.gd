@@ -6,7 +6,16 @@ var warmth_noise: FastNoiseLite
 var humidity_noise: FastNoiseLite
 var magic_noise: FastNoiseLite
 
+var river_noise : FastNoiseLite
 var object_noise: FastNoiseLite
+
+var wrld_seed: int
+const DECORATION_CATEGORIES := [
+	{"chance": 0.2,  "variants": [Vector2i(0, 0)]},  # pebbles
+	{"chance": 0.6,  "variants": [Vector2i(1, 0)]},  # grass
+	{"chance": 0.05, "variants": [Vector2i(2, 0), Vector2i(3, 0)]}, # molehills7
+	{"chance": 0.2, "variants": [Vector2i(0, 1), Vector2i(1, 1)]}, # grassleaves
+]
 
 const BUCKET_COUNT: int = 5
 const WATER_LEVEL: float = -0.3
@@ -21,7 +30,11 @@ const BIOME_GRID = [
 	[GameEnums.BiomeType.COLD_ROCKY_FIELDS, GameEnums.BiomeType.COLD_DESERT, GameEnums.BiomeType.ROCKY_DESERT, GameEnums.BiomeType.BUSHY_DESERT, GameEnums.BiomeType.DESERT]
 ]
 
+static var BIOME_COORDS: Dictionary = _build_biome_coords()
+
 func _init(world_seed: int = 0) -> void:
+	self.wrld_seed = world_seed
+	
 	elevation_noise = FastNoiseLite.new()
 	elevation_noise.seed = world_seed
 	elevation_noise.noise_type = FastNoiseLite.TYPE_PERLIN
@@ -46,6 +59,12 @@ func _init(world_seed: int = 0) -> void:
 	object_noise.seed = world_seed + 5000
 	object_noise.noise_type = FastNoiseLite.TYPE_PERLIN
 	object_noise.frequency = 0.15  # vyššia frekvencia = menšie zhluky/škvrny (zoskupenia stromov)
+	
+	river_noise = FastNoiseLite.new()
+	river_noise.seed = world_seed + 10000
+	river_noise.noise_type = FastNoiseLite.TYPE_PERLIN
+	river_noise.frequency = 0.05  #vysoke - vela malych jazierok - mozno vhodne na baziny?, nizke - velke vodne plochy, oceany a pod napr. hodnota 0.0005 
+
 
 func get_height_level(x: int, y: int) -> int:
 	var height: float = elevation_noise.get_noise_2d(x, y)  # rozsah -1.0 .. 1.0
@@ -62,9 +81,7 @@ func get_height_level(x: int, y: int) -> int:
 		return 3
 	else:
 		return 4
-		
-static var BIOME_COORDS: Dictionary = _build_biome_coords()
- 
+
 static func _build_biome_coords() -> Dictionary:
 	var map := {}
 	for h in range(BIOME_GRID.size()):
@@ -75,18 +92,23 @@ static func _build_biome_coords() -> Dictionary:
 static func find_biome_coords(biome: GameEnums.BiomeType) -> Vector2i:
 	return BIOME_COORDS.get(biome, Vector2i(-1, -1))
 
-
 func get_biome(x: int, y: int) -> Dictionary:
 	var humidity: float = humidity_noise.get_noise_2d(x, y)
 	var warmth: float = warmth_noise.get_noise_2d(x, y)
 	var height_noise: float = elevation_noise.get_noise_2d(x, y)
 	var height: int = get_height_level(x,y)
 	var magic = magic_noise.get_noise_2d(x,y)
+	
+	#var is_river = river_noise.get_noise_2d(x,y) > 0.1 and river_noise.get_noise_2d(x,y) < 0.2
 
 	if height == -1:
 		return {"Biome" : process_water(warmth), "Magic" : GameEnums.MagicModifier.NORMAL, "Height": height}
 	elif height_noise < WATER_LEVEL + 0.01:
 		return {"Biome" : GameEnums.BiomeType.BEACH, "Magic" : GameEnums.MagicModifier.NORMAL, "Height": height}
+
+	#if is_river:
+		#return {"Biome" : process_water(warmth), "Magic" : GameEnums.MagicModifier.NORMAL, "Height": height}
+
 
 	var result: Dictionary = process_land_biomes(humidity, warmth, magic)
 	result["Height"] = height
@@ -152,14 +174,41 @@ func get_object_type(x: int, y: int, biome: GameEnums.BiomeType) -> GameEnums.Wo
 	var density: float = (object_noise.get_noise_2d(x, y) + 1.0) / 2.0  # 0.0 .. 1.0
 
 	if density > 0.2 and density < 0.205:
-		return GameEnums.WorldObjectType.PEBBLE
+		return GameEnums.WorldObjectType.COALROCK
 	elif density > 0.3 and density < 0.305:
-		return GameEnums.WorldObjectType.GRASS
+		return GameEnums.WorldObjectType.PEBBLE
 	elif density > 0.4 and density < 0.405:
 		return GameEnums.WorldObjectType.BUSH
 	elif density > 0.5 and density < 0.505:
-		return GameEnums.WorldObjectType.TREESTUMP
+		return GameEnums.WorldObjectType.ROCK
 	elif density > 0.55 and density < 0.555:
 		return GameEnums.WorldObjectType.TREE
 
 	return GameEnums.WorldObjectType.NONE
+
+## Vráti pole atlas súradníc - jedna položka na kategóriu (v poradí podľa
+## DECORATION_CATEGORIES), Vector2i(-1, -1) = táto kategória tu nie je.
+func get_decorations(x: int, y: int, biome: GameEnums.BiomeType) -> Array[Vector2i]:
+	var result: Array[Vector2i] = []
+
+	var is_water: bool = biome in [GameEnums.BiomeType.WATER, GameEnums.BiomeType.COLD_WATER,
+		GameEnums.BiomeType.FROZEN_WATER, GameEnums.BiomeType.WARM_WATER]
+
+	for i in DECORATION_CATEGORIES.size():
+		if is_water:
+			result.append(Vector2i(-1, -1))
+			continue
+
+		# Deterministická náhoda: rovnaká bunka + kategória = vždy rovnaký výsledok,
+		# takže po unloade/reloade chunku budú dekorácie na tom istom mieste.
+		var rng := RandomNumberGenerator.new()
+		rng.seed = hash(Vector3i(x, y, wrld_seed + 7000 + i))
+
+		var category: Dictionary = DECORATION_CATEGORIES[i]
+		if rng.randf() < category["chance"]:
+			var variants: Array = category["variants"]
+			result.append(variants[rng.randi() % variants.size()])
+		else:
+			result.append(Vector2i(-1, -1))
+
+	return result

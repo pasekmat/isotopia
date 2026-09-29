@@ -3,12 +3,11 @@ extends Resource
 
 @export var id: GameEnums.RecipeType = GameEnums.RecipeType.STONE_PATH
 @export var display_name: String = ""
-@export var icon: Texture2D
 
 ## Suroviny potrebné na craftnutie.
 @export var required_items: Array[ItemRequirement] = []
 
-@export var result_item_id: GameEnums.ItemType = GameEnums.ItemType.WOOD
+@export var result_item : Item
 @export var result_amount: int = 1
 
 ## Do ktorej nezávislej crafting kategórie tento recept patrí.

@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="BaseSpell" format=3 uid="uid://ebw08cbe22h2"]
+
+[ext_resource type="Script" uid="uid://bhrpcjtt53gmt" path="res://scripts/model/spells/cost_type/no_spell_cost.gd" id="1_05u7s"]
+[ext_resource type="Script" uid="uid://bc6e1flwi5o6n" path="res://scripts/model/spells/base_spell.gd" id="1_88718"]
+[ext_resource type="Script" uid="uid://k3hyk1avcg5j" path="res://scripts/model/spells/spell_effect.gd" id="1_rle8v"]
+[ext_resource type="Script" uid="uid://cyut1wbcr754t" path="res://scripts/model/spells/spell_effects/damage_effect.gd" id="3_ppb32"]
+[ext_resource type="Texture2D" uid="uid://dgmx1fkyl6rwr" path="res://icon.svg" id="4_4j27t"]
+[ext_resource type="Script" uid="uid://dqduw6ixqklks" path="res://scripts/model/spells/spell_types/targetted_spell.gd" id="6_fymcx"]
+[ext_resource type="PackedScene" uid="uid://cnc5v5dfsod5d" path="res://hit_vfx.tscn" id="7_ppb32"]
+
+[sub_resource type="Resource" id="Resource_3aivu"]
+script = ExtResource("1_05u7s")
+metadata/_custom_type_script = "uid://bhrpcjtt53gmt"
+
+[sub_resource type="Resource" id="Resource_46s7a"]
+script = ExtResource("3_ppb32")
+strength_scaling = 0.1
+metadata/_custom_type_script = "uid://cyut1wbcr754t"
+
+[sub_resource type="Resource" id="Resource_br273"]
+script = ExtResource("6_fymcx")
+vfx_scene = ExtResource("7_ppb32")
+metadata/_custom_type_script = "uid://dqduw6ixqklks"
+
+[resource]
+script = ExtResource("1_88718")
+id = "spell1"
+display_name = "Spell1"
+icon = ExtResource("4_4j27t")
+cooldown = 5.0
+spell_type = SubResource("Resource_br273")
+cost = SubResource("Resource_3aivu")
+effects = Array[ExtResource("1_rle8v")]([SubResource("Resource_46s7a")])
+metadata/_custom_type_script = "uid://bc6e1flwi5o6n"
